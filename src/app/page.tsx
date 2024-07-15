@@ -7,7 +7,6 @@ import { getOrganizationId } from "@/utlis/Whitelabel";
 
 type Props = {
   searchParams: { query?: string; label?: string };
-  locale: any;
 };
 
 export async function generateMetadata(): Promise<Metadata> {
