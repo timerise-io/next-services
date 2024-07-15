@@ -46,19 +46,6 @@ function ServiceBox(props: {
     boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.08)",
   };
 
-  const headingStyle: CSSProperties = {
-    fontWeight: "700",
-    lineHeight: "24px",
-  };
-
-  const iconStyle: CSSProperties = {
-    marginRight: "4px",
-  };
-
-  const iconTitleStyle: CSSProperties = {
-    fontWeight: "700",
-  };
-
   const localPrice = new Intl.NumberFormat(locale, {
     style: "currency",
     currency: currency,
@@ -70,14 +57,20 @@ function ServiceBox(props: {
       : "https://cdn.timerise.io/app/placeholder-light.png";
 
   return (
-    <div style={boxStyle} className="flex flex-col justify-between items-center p-5 m-2.5">
-      <div>
-        <div className="mb-3" style={{position: 'relative'}}>
+    <div
+      style={boxStyle}
+      className="flex flex-col justify-between items-start p-5 m-2.5"
+    >
+      <div style={{ width: "100%" }}>
+        <div
+          className="mb-3"
+          style={{ position: "relative", width: "100%", height: "256px" }}
+        >
           <Image
             fill
             src={mediaUrl}
             alt={title}
-            className="w-full aspect-4/3 object-cover rounded"
+            className="w-full aspect-4/3 object-cover"
           />
         </div>
         <div className="mb-2">
@@ -91,8 +84,8 @@ function ServiceBox(props: {
         {locations && locations[0] && (
           <div className="flex flex-row items-start mt-2">
             <Image
-              width={20}
-              height={20}
+              width={16}
+              height={16}
               src="https://cdn.timerise.io/app/info-address.png"
               alt="Host"
               className="w-4 mr-2"
@@ -105,8 +98,8 @@ function ServiceBox(props: {
         {hosts && hosts[0] && (
           <div className="flex flex-row items-center mt-2">
             <Image
-              width={20}
-              height={20}
+              width={16}
+              height={16}
               src="https://cdn.timerise.io/app/info-host.png"
               alt="Host"
               className="w-4 mr-2"
@@ -119,8 +112,8 @@ function ServiceBox(props: {
         {durationInfo && (
           <div className="flex flex-row items-center mt-2">
             <Image
-              width={20}
-              height={20}
+              width={16}
+              height={16}
               src="https://cdn.timerise.io/app/info-duration.png"
               alt="Duration"
               className="w-4 mr-2"
@@ -133,8 +126,8 @@ function ServiceBox(props: {
         {!!price && price > 0 && (
           <div className="flex flex-row items-center mt-2">
             <Image
-              width={20}
-              height={20}
+              width={16}
+              height={16}
               src="https://cdn.timerise.io/app/info-price.png"
               alt="Price"
               className="w-4 mr-2"
@@ -147,10 +140,10 @@ function ServiceBox(props: {
           </div>
         )}
       </div>
-      <div className="w-full">
+      <div className="w-full mt-10">
         <Link
           href={bookingPageUrl + (userLocale ? "?locale=" + userLocale : "")}
-          className="h-10 mt-4.5 font-bold w-full"
+          className="h-10 font-bold w-full"
         >
           {bookButtonLabel}
         </Link>
