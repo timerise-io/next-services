@@ -11,7 +11,7 @@ export const GET = async (
   },
 ) => {
   try {
-    const query = JSON.stringify({ query:`{ services(organizationId:"${organizationId}" limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }` });
+    const query = JSON.stringify({ query:`{ services(organizationId:"${organizationId}" featured:true limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }` });
     const response = await fetch(Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -23,7 +23,7 @@ export const GET = async (
       return handleZodError(response.status);
     }
     const result = await response.json();
-    return NextResponse.json(result.data?.services || {});
+    return NextResponse.json(result.data?.services || []);
   } catch (error) {
     return handleZodError(error);
   }

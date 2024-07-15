@@ -16,3 +16,81 @@
   }
 }
 
+:root {
+  --primary-color: #000000;
+  --secondary-color: #ffffff;
+  --background-color: #f6f6f6;
+  --background-color-secondary: var(--secondary-color);
+  --text-color: var(--primary-color);
+  --line-color: #dfdfdf;
+  --red-color: #ea4335;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background-color);
+}
+
+a {
+  color: var(--primary-color);
+}
+
+p {
+  margin: 0;
+  margin-bottom: 4px;
+  line-height: 20px;
+}
+
+ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+input:disabled{
+  -webkit-text-fill-color: var(--primary-color);
+  opacity: 1; /* required on iOS */
+}
+
+button {
+  font-weight: 700 !important;
+}
+
+.password-strength-bar {
+  margin: 0 2px;
+}
+
+.password-strength-bar p {
+  color: var(--primary-color) !important;
+  font-size: 12px !important;
+}
+
+#signUpForm label {
+  font-size: 13px !important;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}

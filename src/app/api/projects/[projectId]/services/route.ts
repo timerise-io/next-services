@@ -23,7 +23,7 @@ export const GET = async (
       return handleZodError(response.status);
     }
     const result = await response.json();
-    return NextResponse.json(result.data?.services || {});
+    return NextResponse.json(result.data?.services || []);
   } catch (error) {
     return handleZodError(error);
   }
