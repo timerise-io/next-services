@@ -9,11 +9,9 @@ export const Env = createEnv({
   },
   client: {
     NEXT_PUBLIC_TIMERISE_API_ENDPOINT: z.string(),
-    NEXT_PUBLIC_LOCAL_API_ENDPOINT: z.string(),
   },
   runtimeEnv: {
     TIMERISE_API_KEY: process.env.TIMERISE_API_KEY,
     NEXT_PUBLIC_TIMERISE_API_ENDPOINT: process.env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT,
-    NEXT_PUBLIC_LOCAL_API_ENDPOINT: process.env.NEXT_PUBLIC_LOCAL_API_ENDPOINT,
   },
 });

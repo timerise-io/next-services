@@ -11,7 +11,7 @@ export const GET = async (
   },
 ) => {
   try {
-    const query = JSON.stringify({ query:`{ projects(organizationId:"${organizationId}") { projectId title labels } }` });
+    const query = JSON.stringify({ query:`{ projects(organizationId:"${organizationId}") { organizationId projectId title labels } }` });
     const response = await fetch(Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT, {
       method: 'POST',
       headers: {

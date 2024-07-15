@@ -1,34 +1,33 @@
-import { ChangeEvent, CSSProperties, useCallback, useState } from 'react';
-import { t } from 'i18next';
-import { useWhitelabel } from '@/context/Whitelabel';
+import { ChangeEvent, CSSProperties, useCallback, useState } from "react";
+import { t } from "i18next";
+import { useWhitelabel } from "@/context/Whitelabel";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const boxStyle: CSSProperties = {
-  display: 'flex',
-  backgroundColor: 'var(--secondary-color)',
-  border: 'none',
-  borderRadius: '4px',
-  paddingLeft: '12px',
-  height: '38px',
-  boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.08)',
+  display: "flex",
+  backgroundColor: "var(--secondary-color)",
+  border: "none",
+  borderRadius: "4px",
+  paddingLeft: "12px",
+  height: "38px",
+  boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.08)",
 };
 
 const selectStyle: CSSProperties = {
-  marginTop: '0px',
-  width: '180px',
-  border: 'none',
-  borderRadius: '4px',
-  fontWeight: '600',
-  fontSize: '13px',
+  marginTop: "0px",
+  width: "180px",
+  border: "none",
+  borderRadius: "4px",
+  fontWeight: "600",
+  fontSize: "13px",
 };
 
 const labelStyle: CSSProperties = {
-  fontWeight: '400',
-  fontSize: '13px',
+  fontWeight: "400",
+  fontSize: "13px",
 };
 
-function LabelsFilterBox(props: { labels: string[], label: string }) {
-
+function LabelsFilterBox(props: { labels: string[]; label: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -55,15 +54,18 @@ function LabelsFilterBox(props: { labels: string[], label: string }) {
   return (
     <div style={boxStyle}>
       <span style={labelStyle}>{labelsSelectLabel}:</span>
-        <select onChange={handleChange} value={label} style={selectStyle}>
-          <option value="">{t('all')}</option>
-          {labels && labels.length > 0 && labels.map((label: string, index: number) => (
-          <option key={index} value={label}>{label}</option>
+      <select onChange={handleChange} value={label} style={selectStyle}>
+        <option value="">{t("all")}</option>
+        {labels &&
+          labels.length > 0 &&
+          labels.map((label: string, index: number) => (
+            <option key={index} value={label}>
+              {label}
+            </option>
           ))}
       </select>
     </div>
   );
-
 }
 
 export default LabelsFilterBox;

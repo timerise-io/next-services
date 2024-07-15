@@ -12,6 +12,8 @@ import ProjectsFilterBox from './ProjectsFilterBox';
 function Header(props: { query: string, label: string, projects?: { projectId: string; title: string }[], labels?: string[] }) {
 
   const { query, label, projects, labels } = props;
+
+  console.log(projects)
   
   const isMobile = useMediaQuery({ query: mediaQueries.isMobile });
   const { searchShow } = useWhitelabel();

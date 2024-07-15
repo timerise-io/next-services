@@ -2,7 +2,7 @@ import useSWR, { mutate } from 'swr';
 
 import { fetchProjectsByOrganization } from '@/models/organizations';
 
-export function useOrganizationProjects(organizationId: string) {
+export function useOrganizationProjects(organizationId: string | null) {
   const { data, error } = useSWR([`projects-${organizationId}`], () => fetchProjectsByOrganization(organizationId));
   return {
     projects: data,

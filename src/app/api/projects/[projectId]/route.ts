@@ -1,6 +1,6 @@
-import { Env } from '@/utlis/Env';
-import { handleZodError } from '@/utlis/Zod';
-import { NextResponse } from 'next/server';
+import { Env } from "@/utlis/Env";
+import { handleZodError } from "@/utlis/Zod";
+import { NextResponse } from "next/server";
 
 export const GET = async (
   _: Request,
@@ -8,18 +8,18 @@ export const GET = async (
     params: { projectId },
   }: {
     params: { projectId: string };
-  },
+  }
 ) => {
   try {
     const query = JSON.stringify({
-      query: `{ project(projectId:"${projectId}") { projectId defaultLocale localTimeZone title logoUrl labels } }`
+      query: `{ project(projectId:"${projectId}") { projectId defaultLocale localTimeZone title logoUrl labels } }`,
     });
     const response = await fetch(Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: query
+      body: query,
     });
     if (!response.ok) {
       return handleZodError(response.status);

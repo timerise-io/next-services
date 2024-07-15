@@ -2,12 +2,12 @@ import { Env } from "@/utlis/Env";
 import { ProjectInterface } from "@/utlis/Types";
 
 export const fetchProject = async (
-  projectId: string,
+  projectId: string
 ): Promise<ProjectInterface> => {
-  const response = await fetch(Env.NEXT_PUBLIC_LOCAL_API_ENDPOINT + '/api/projects/' + projectId, {
-    method: 'GET',
+  const response = await fetch("/api/projects/" + projectId, {
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
   if (response.ok) {

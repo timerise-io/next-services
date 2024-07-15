@@ -10,14 +10,15 @@ import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
 import { useProject } from "@/hooks/SWR/useProject";
 
 export default function ProjectHome(props: {
+  organizationId: string | null;
   projectId: string;
   query: string;
   label: string;
 }) {
-  const { projectId, query, label } = props;
+  const { organizationId, projectId, query, label } = props;
 
   const whitelabelContextValue: WhitelabelContextType = {
-    organizationId: null,
+    organizationId,
     projectId,
     title: "Timerise",
     iconSrc: "https://cdn.timerise.io/landing-page/favicon.png",
@@ -39,8 +40,10 @@ export default function ProjectHome(props: {
     projectsSelectLabel: "Projects",
   };
 
+  console.log(organizationId, projectId, query, label);
+
   const { project } = useProject(projectId);
-  const { projects } = useOrganizationProjects(projectId);
+  const { projects } = useOrganizationProjects(organizationId);
 
   return (
     <WhitelabelContext.Provider value={whitelabelContextValue}>
