@@ -5,9 +5,9 @@ import EmptyList from '../EmptyList';
 import { useProjectServices } from '@/hooks/SWR/useServices';
 import { ServiceInterface } from '@/utlis/Types';
 
-function ServicesSearch(props: { organizationId: string, query: string, locale: string, userLocale?: string|null|undefined }) {
+function ServicesSearch(props: { organizationId: string, query: string, label: string, locale: string, userLocale?: string|null|undefined }) {
 
-  const { organizationId, query, locale, userLocale } = props;
+  const { organizationId, query, label, locale, userLocale } = props;
   const { services, isLoadingServices } = useProjectServices(organizationId);
   
   const componentStyle: CSSProperties = {

@@ -6,7 +6,6 @@ import Footer from "../Footer";
 import { useOrganization } from "@/hooks/SWR/useOrganization";
 import ServicesList from "./ServicesList";
 import ServicesSearch from "./ServicesSearch";
-import ServicesLabels from "./ServicesLabels";
 import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
 
 export default function OrganizationHome(props: {
@@ -45,29 +44,23 @@ export default function OrganizationHome(props: {
   return (
     <WhitelabelContext.Provider value={whitelabelContextValue}>
       {organization && (
-        <>
+      <>
         <Header query={query} label={label} projects={projects || []} labels={organization.labels || []} />
-          {(!query || query.length < 3) && (!label || label.length < 2) && (
-            <ServicesList
-              organizationId={organizationId}
-              locale={organization.defaultLocale}
-            />
-          )}
-          {query?.length > 2 && (
-            <ServicesSearch
-              organizationId={organizationId}
-              query={query}
-              locale={organization.defaultLocale}
-            />
-          )}
-          {label?.length > 1 && (
-            <ServicesLabels
-              organizationId={organizationId}
-              label={label}
-              locale={organization.defaultLocale}
-            />
-          )}
-        </>
+        {(!query || query.length < 3) && (!label || label.length < 3) && (
+          <ServicesList
+            organizationId={organizationId}
+            locale={organization.defaultLocale}
+          />
+        )}
+        {((query && query.length > 2) || (label && label.length > 2)) && (
+          <ServicesSearch
+            organizationId={organizationId}
+            query={query}
+            label={label}
+            locale={organization.defaultLocale}
+          />
+        )}
+      </>
       )}
       <Footer />
     </WhitelabelContext.Provider>
