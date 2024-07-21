@@ -9,14 +9,16 @@ export const metadata: Metadata = {
   title: "Services App - Timerise",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html>
+      <body className={inter.className}>
+          {children}
+      </body>
     </html>
   );
 }

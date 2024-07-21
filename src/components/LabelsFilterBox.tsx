@@ -1,7 +1,7 @@
 import { ChangeEvent, CSSProperties, useCallback, useState } from "react";
-import { t } from "i18next";
 import { useWhitelabel } from "@/context/Whitelabel";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 const boxStyle: CSSProperties = {
   display: "flex",
@@ -50,6 +50,8 @@ function LabelsFilterBox(props: { labels: string[]; label: string }) {
     if (!label || label.length < 3) return;
     router.push(`${pathname}?${createQueryString("label", label)}`);
   };
+
+  const { t } = useTranslation();
 
   return (
     <div style={boxStyle}>

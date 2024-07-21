@@ -1,7 +1,7 @@
 import { ChangeEvent, CSSProperties, useState } from "react";
-import { t } from "i18next";
 import { useWhitelabel } from "@/context/Whitelabel";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 const boxStyle: CSSProperties = {
   display: "flex",
@@ -44,6 +44,8 @@ function ProjectsFilterBox(props: {
 
     router.push(`/${query}`);
   };
+
+  const { t } = useTranslation();
 
   return (
     <div style={boxStyle}>
