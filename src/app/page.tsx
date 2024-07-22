@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import OrganizationHome from "@/components/Organization/Home";
 import { Env } from "@/utlis/Env";
 import { getOrganizationId } from "@/utlis/Whitelabel";
+import ClientOnly from "@/components/ClientOnly";
 
 type Props = {
   searchParams: { query?: string; label?: string };
@@ -24,7 +25,10 @@ export async function generateMetadata(): Promise<Metadata> {
   });
   if (response.ok) {
     const data = await response.json();
-    return { title: data?.data?.organization?.title, icons: data?.data?.organization?.iconUrl };
+    return {
+      title: data?.data?.organization?.title,
+      icons: data?.data?.organization?.iconUrl,
+    };
   } else {
     return {};
   }
@@ -44,11 +48,13 @@ export default function Home({ searchParams }: Props) {
       className="flex min-h-screen flex-col items-between justify-between"
       style={componentStyle}
     >
-      <OrganizationHome
-        organizationId={organizationId}
-        query={query as string}
-        label={label as string}
-      />
+      <ClientOnly>
+        <OrganizationHome
+          organizationId={organizationId}
+          query={query as string}
+          label={label as string}
+        />
+      </ClientOnly>
     </main>
   );
 }

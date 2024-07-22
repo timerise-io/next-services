@@ -47,7 +47,6 @@ function LabelsFilterBox(props: { labels: string[]; label: string }) {
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     const label: string = e.target.value;
-    if (!label || label.length < 3) return;
     router.push(`${pathname}?${createQueryString("label", label)}`);
   };
 

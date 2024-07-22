@@ -5,6 +5,7 @@ import { CSSProperties } from "react";
 import { headers } from "next/headers";
 import { Env } from "@/utlis/Env";
 import { getOrganizationId } from "@/utlis/Whitelabel";
+import ClientOnly from "@/components/ClientOnly";
 
 const componentStyle: CSSProperties = {
   display: "flex",
@@ -35,7 +36,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
   if (response.ok) {
     const data = await response.json();
-    return { title: data?.data?.project?.title, icons: data?.data?.project?.iconUrl };
+    return {
+      title: data?.data?.project?.title,
+      icons: data?.data?.project?.iconUrl,
+    };
   } else {
     return {};
   }
@@ -52,12 +56,14 @@ export default function Project({ params, searchParams }: Props) {
       className="flex min-h-screen flex-col items-between justify-between"
       style={componentStyle}
     >
-      <ProjectHome
-        organizationId={organizationId}
-        projectId={projectId}
-        query={query as string}
-        label={label as string}
-      />
+      <ClientOnly>
+        <ProjectHome
+          organizationId={organizationId}
+          projectId={projectId}
+          query={query as string}
+          label={label as string}
+        />
+      </ClientOnly>
     </main>
   );
 }

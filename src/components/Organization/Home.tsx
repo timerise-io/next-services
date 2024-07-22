@@ -7,6 +7,8 @@ import { useOrganization } from "@/hooks/SWR/useOrganization";
 import ServicesList from "./ServicesList";
 import ServicesSearch from "./ServicesSearch";
 import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
+import { I18nextProvider } from "react-i18next";
+import i18n from "@/utlis/i18n";
 
 export default function OrganizationHome(props: {
   organizationId: string;
@@ -42,27 +44,34 @@ export default function OrganizationHome(props: {
   const { projects } = useOrganizationProjects(organizationId);
 
   return (
-    <WhitelabelContext.Provider value={whitelabelContextValue}>
-      {organization && (
-      <>
-        <Header query={query} label={label} projects={projects || []} labels={organization.labels || []} />
-        {(!query || query.length < 3) && (!label || label.length < 3) && (
-          <ServicesList
-            organizationId={organizationId}
-            locale={organization.defaultLocale}
-          />
+    <I18nextProvider i18n={i18n}>
+      <WhitelabelContext.Provider value={whitelabelContextValue}>
+        {organization && (
+          <>
+            <Header
+              query={query}
+              label={label}
+              projects={projects || []}
+              labels={organization.labels || []}
+            />
+            {(!query || query.length < 3) && (!label || label.length < 3) && (
+              <ServicesList
+                organizationId={organizationId}
+                locale={organization.defaultLocale}
+              />
+            )}
+            {((query && query.length > 2) || (label && label.length > 2)) && (
+              <ServicesSearch
+                organizationId={organizationId}
+                query={query}
+                label={label}
+                locale={organization.defaultLocale}
+              />
+            )}
+          </>
         )}
-        {((query && query.length > 2) || (label && label.length > 2)) && (
-          <ServicesSearch
-            organizationId={organizationId}
-            query={query}
-            label={label}
-            locale={organization.defaultLocale}
-          />
-        )}
-      </>
-      )}
-      <Footer />
-    </WhitelabelContext.Provider>
+        <Footer />
+      </WhitelabelContext.Provider>
+    </I18nextProvider>
   );
 }

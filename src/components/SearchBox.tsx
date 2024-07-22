@@ -45,8 +45,7 @@ function SearchBox(props: { query: string }) {
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const query: string = e.target.value;
-    if (!query || query.length < 3) return;
+    const query: string = e.target.value || "";
     setSearchQuery(query);
     router.push(`${pathname}?${createQueryString("query", query)}`);
   };

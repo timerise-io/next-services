@@ -8,7 +8,8 @@ import ServicesSearch from "./ServicesSearch";
 import ServicesLabels from "./ServicesLabels";
 import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
 import { useProject } from "@/hooks/SWR/useProject";
-
+import { I18nextProvider } from "react-i18next";
+import i18n from "@/utlis/i18n";
 export default function ProjectHome(props: {
   organizationId: string | null;
   projectId: string;
@@ -40,44 +41,44 @@ export default function ProjectHome(props: {
     projectsSelectLabel: "Projects",
   };
 
-  console.log(organizationId, projectId, query, label);
-
   const { project } = useProject(projectId);
   const { projects } = useOrganizationProjects(organizationId);
 
   return (
-    <WhitelabelContext.Provider value={whitelabelContextValue}>
-      {project && (
-        <>
-          <Header
-            query={query}
-            label={label}
-            projects={projects || []}
-            labels={project.labels || []}
-          />
-          {(!query || query.length < 3) && (!label || label.length < 2) && (
-            <ServicesList
-              projectId={projectId}
-              locale={project.defaultLocale}
-            />
-          )}
-          {query?.length > 2 && (
-            <ServicesSearch
-              projectId={projectId}
+    <I18nextProvider i18n={i18n}>
+      <WhitelabelContext.Provider value={whitelabelContextValue}>
+        {project && (
+          <>
+            <Header
               query={query}
-              locale={project.defaultLocale}
-            />
-          )}
-          {label?.length > 1 && (
-            <ServicesLabels
-              projectId={projectId}
               label={label}
-              locale={project.defaultLocale}
+              projects={projects || []}
+              labels={project.labels || []}
             />
-          )}
-        </>
-      )}
-      <Footer />
-    </WhitelabelContext.Provider>
+            {(!query || query.length < 3) && (!label || label.length < 2) && (
+              <ServicesList
+                projectId={projectId}
+                locale={project.defaultLocale}
+              />
+            )}
+            {query?.length > 2 && (
+              <ServicesSearch
+                projectId={projectId}
+                query={query}
+                locale={project.defaultLocale}
+              />
+            )}
+            {label?.length > 1 && (
+              <ServicesLabels
+                projectId={projectId}
+                label={label}
+                locale={project.defaultLocale}
+              />
+            )}
+          </>
+        )}
+        <Footer />
+      </WhitelabelContext.Provider>
+    </I18nextProvider>
   );
 }
