@@ -4,12 +4,13 @@ import Loading from '../Loading';
 import EmptyList from '../EmptyList';
 import { useProjectServices } from '@/hooks/SWR/useServices';
 import { ServiceInterface } from '@/utlis/Types';
+import { useOrganizationServicesLabel } from '@/hooks/SWR/useOrganizationServicesLabel';
 
 function ServicesLabels(props: { organizationId: string, label: string, locale: string }) {
 
   const { organizationId, label, locale } = props;
 
-  const { services, isLoadingServices } = useProjectServices(organizationId);
+  const { services, isLoadingServices } = useOrganizationServicesLabel(organizationId, label);
 
   const componentStyle: CSSProperties = {
     display: 'flex', 

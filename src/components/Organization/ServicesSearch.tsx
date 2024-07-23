@@ -4,11 +4,12 @@ import Loading from '../Loading';
 import EmptyList from '../EmptyList';
 import { useProjectServices } from '@/hooks/SWR/useServices';
 import { ServiceInterface } from '@/utlis/Types';
+import { useOrganizationServicesQuery } from '@/hooks/SWR/useOrganizationServicesQuery';
 
-function ServicesSearch(props: { organizationId: string, query: string, label: string, locale: string, userLocale?: string|null|undefined }) {
+function ServicesSearch(props: { organizationId: string, query: string, locale: string, userLocale?: string|null|undefined }) {
 
-  const { organizationId, query, label, locale, userLocale } = props;
-  const { services, isLoadingServices } = useProjectServices(organizationId);
+  const { organizationId, query, locale, userLocale } = props;
+  const { services, isLoadingServices } = useOrganizationServicesQuery(organizationId, query);
   
   const componentStyle: CSSProperties = {
     display: 'flex', 

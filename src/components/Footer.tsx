@@ -18,7 +18,7 @@ export default function Footer() {
   return (
     <footer className="flex justify-between flex-row p-3 mt-4.5">
       <div
-        className={`flex justify-between ${
+        className={`flex justify-between gap-2 ${
           isMobile || isTablet ? "flex-col" : "flex-row"
         } text-left`}
       >

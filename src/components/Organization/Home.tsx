@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { WhitelabelContext, WhitelabelContextType } from "@/context/Whitelabel";
@@ -9,6 +10,7 @@ import ServicesSearch from "./ServicesSearch";
 import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
 import { I18nextProvider } from "react-i18next";
 import i18n from "@/utlis/i18n";
+import { useEffect } from "react";
 
 export default function OrganizationHome(props: {
   organizationId: string;
@@ -22,7 +24,7 @@ export default function OrganizationHome(props: {
     projectId: null,
     title: "Timerise",
     iconSrc: "https://cdn.timerise.io/landing-page/favicon.png",
-    bookingPageDomain: "dev-booking.timerise.io",
+    bookingPageDomain: "booking.timerise.io",
     logoUrl: "https://cdn.timerise.io/landing-page/favicon.png",
     logoHeight: 60,
     logoHref: "/" + 1,
@@ -42,6 +44,14 @@ export default function OrganizationHome(props: {
 
   const { organization } = useOrganization(organizationId);
   const { projects } = useOrganizationProjects(organizationId);
+
+  useEffect(() => {
+    if (organization) {
+      console.log("Organization", organization);
+      i18n.changeLanguage(organization.defaultLocale);
+      whitelabelContextValue.title = organization.title;
+    }
+  }, [organization]);
 
   return (
     <I18nextProvider i18n={i18n}>
@@ -64,7 +74,6 @@ export default function OrganizationHome(props: {
               <ServicesSearch
                 organizationId={organizationId}
                 query={query}
-                label={label}
                 locale={organization.defaultLocale}
               />
             )}
