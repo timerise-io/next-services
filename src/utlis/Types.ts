@@ -42,6 +42,9 @@ export interface OrganizationInterface {
   bookingsLimit: number;
   defaultLocale: string;
   localTimeZone: string;
+  iconUrl?: string;
+  logoUrl?: string;
+  coverUrl?: string;
   labels?: string[];
 }
 export interface ProjectInterface {
@@ -55,8 +58,9 @@ export interface ProjectInterface {
   organizationId?: string;
   description?: string;
   theme?: Theme;
-  logoUrl?: URL;
-  coverUrl?: URL;
+  iconUrl?: string;
+  logoUrl?: string;
+  coverUrl?: string;
   textColor?: string;
   linkColor?: string;
   buttonTextColor?: string;

@@ -12,10 +12,11 @@ import ServicesList from "./ServicesList";
 import ServicesSearch from "./ServicesSearch";
 import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
 import { I18nextProvider, useTranslation } from "react-i18next";
-import i18n from "@/utlis/i18n";
+import i18n, { prepareLocale } from "@/utlis/i18n";
 import { useEffect, useState } from "react";
 import ServicesLabels from "./ServicesLabels";
 import { WhitelabelContextType } from "@/utlis/Types";
+import { pickBy } from "lodash";
 
 export default function OrganizationHome(props: {
   organizationId: string;
@@ -40,13 +41,16 @@ export default function OrganizationHome(props: {
 
   useEffect(() => {
     if (organization) {
-      //i18n.changeLanguage(organization.defaultLocale);
       const mergedWhitelabel = {
         ...whitelabel,
-        organizationId,
-        title: organization.title,
-        labels: organization.labels,
-        locale: organization.defaultLocale,
+        ...pickBy({
+          organizationId,
+          title: organization.title,
+          labels: organization.labels,
+          locale: prepareLocale(i18n.language, organization.defaultLocale),
+          logoUrl: organization.logoUrl,
+          iconUrl: organization.iconUrl || organization.logoUrl,
+        }),
         searchBoxLabel: t("search"),
         projectsBoxLabel: t("projects"),
         labelsBoxLabel: t("labels"),
@@ -63,27 +67,15 @@ export default function OrganizationHome(props: {
       <WhitelabelContext.Provider value={whitelabel}>
         {organization && (
           <>
-            <Header
-              query={query}
-              label={label}
-              projects={projects || []}
-            />
+            <Header query={query} label={label} projects={projects || []} />
             {(!query || query.length < 3) && (!label || label.length < 3) && (
-              <ServicesList
-                organizationId={organizationId}
-              />
+              <ServicesList organizationId={organizationId} />
             )}
             {label && label.length > 2 && (
-              <ServicesLabels
-                organizationId={organizationId}
-                label={label}
-              />
+              <ServicesLabels organizationId={organizationId} label={label} />
             )}
             {query && query.length > 2 && (
-              <ServicesSearch
-                organizationId={organizationId}
-                query={query}
-              />
+              <ServicesSearch organizationId={organizationId} query={query} />
             )}
           </>
         )}

@@ -13,9 +13,10 @@ import ServicesLabels from "./ServicesLabels";
 import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
 import { useProject } from "@/hooks/SWR/useProject";
 import { I18nextProvider, useTranslation } from "react-i18next";
-import i18n from "@/utlis/i18n";
+import i18n, { prepareLocale } from "@/utlis/i18n";
 import { useEffect, useState } from "react";
 import { WhitelabelContextType } from "@/utlis/Types";
+import { pickBy } from "lodash";
 export default function ProjectHome(props: {
   organizationId: string | undefined;
   projectId: string;
@@ -45,14 +46,17 @@ export default function ProjectHome(props: {
 
   useEffect(() => {
     if (project) {
-      i18n.changeLanguage(project.defaultLocale);
       const mergedWhitelabel = {
         ...whitelabel,
-        organizationId,
-        projectId,
-        title: project.title,
-        labels: project.labels,
-        locale: project.defaultLocale,
+        ...pickBy({
+          organizationId,
+          projectId,
+          title: project.title,
+          labels: project.labels,
+          locale: prepareLocale(i18n.language, project.defaultLocale),
+          logoUrl: project.logoUrl,
+          iconUrl: project.iconUrl || project.logoUrl,
+        }),
         searchBoxLabel: t("search"),
         projectsBoxLabel: t("projects"),
         labelsBoxLabel: t("labels"),
