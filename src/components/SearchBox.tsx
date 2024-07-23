@@ -4,11 +4,12 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const boxStyle: CSSProperties = {
   display: "flex",
+  alignItems: "center",
   backgroundColor: "var(--secondary-color)",
   border: "none",
   borderRadius: "4px",
   paddingLeft: "12px",
-  height: "38px",
+  height: "42px",
   boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.08)",
 };
 
@@ -32,7 +33,7 @@ function SearchBox(props: { query: string }) {
 
   const { query } = props;
   const [searchQuery, setSearchQuery] = useState<string>(query);
-  const { searchInputLabel, searchInputPlaceholder } = useWhitelabel();
+  const { searchBoxLabel, searchBoxPlaceholder } = useWhitelabel();
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -52,9 +53,9 @@ function SearchBox(props: { query: string }) {
 
   return (
     <div style={boxStyle}>
-      <span style={labelStyle}>{searchInputLabel}:</span>
+      <span style={labelStyle}>{searchBoxLabel}:</span>
       <input
-        placeholder={searchInputPlaceholder}
+        placeholder={searchBoxPlaceholder}
         value={searchQuery}
         onChange={handleSearch}
         style={inputStyle}

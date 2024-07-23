@@ -1,6 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { WhitelabelContext, WhitelabelContextType } from "@/context/Whitelabel";
+import {
+  defaultWhitelabelContextValue,
+  WhitelabelContext,
+} from "@/context/Whitelabel";
 import Header from "../Header";
 import Footer from "../Footer";
 import ServicesList from "./ServicesList";
@@ -8,72 +12,73 @@ import ServicesSearch from "./ServicesSearch";
 import ServicesLabels from "./ServicesLabels";
 import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
 import { useProject } from "@/hooks/SWR/useProject";
-import { I18nextProvider } from "react-i18next";
+import { I18nextProvider, useTranslation } from "react-i18next";
 import i18n from "@/utlis/i18n";
+import { useEffect, useState } from "react";
+import { WhitelabelContextType } from "@/utlis/Types";
 export default function ProjectHome(props: {
-  organizationId: string | null;
+  organizationId: string | undefined;
   projectId: string;
   query: string;
   label: string;
 }) {
   const { organizationId, projectId, query, label } = props;
 
-  const whitelabelContextValue: WhitelabelContextType = {
-    organizationId,
-    projectId,
-    title: "Timerise",
-    iconSrc: "https://cdn.timerise.io/landing-page/favicon.png",
-    bookingPageDomain: "dev-booking.timerise.io",
-    logoUrl: "https://cdn.timerise.io/landing-page/favicon.png",
-    logoHeight: 60,
-    logoHref: "/" + 1,
-    searchShow: true,
-    searchInputLabel: "Search",
-    searchInputPlaceholder: "Service or location...",
-    labelsSelectLabel: "Labels",
-    labels: [],
-    bookButtonLabel: "Book now",
-    termsUrl: "https://timerise.io/legal-tac-en.html",
-    privacyUrl: "https://timerise.io/legal-pp-en.html",
-    poweredByLogoUrl: "https://cdn.timerise.io/app/powered.png",
-    poweredByLogoHref: "https://timerise.io",
-    poweredByLogoHeight: 14,
-    projectsSelectLabel: "Projects",
-  };
+  const [whitelabel, setWhitelabel] = useState<WhitelabelContextType>(
+    defaultWhitelabelContextValue
+  );
+
+  const { t } = useTranslation();
 
   const { project } = useProject(projectId);
   const { projects } = useOrganizationProjects(organizationId);
 
+  const extraOrganizationConfig: { [organizationId: string]: any } = {
+    // services.bloomyhealth.pl
+    XFV6dCD8YZM3IeOiOz3z: {
+      labelsBox: false,
+      projectsBoxLabel: t("clinics"),
+    },
+  };
+
+  const extraProjectConfig: { [organizationId: string]: any } = {};
+
+  useEffect(() => {
+    if (project) {
+      i18n.changeLanguage(project.defaultLocale);
+      const mergedWhitelabel = {
+        ...whitelabel,
+        organizationId,
+        projectId,
+        title: project.title,
+        labels: project.labels,
+        locale: project.defaultLocale,
+        searchBoxLabel: t("projects"),
+        projectsBoxLabel: t("projects"),
+        labelsBoxLabel: t("labels"),
+        bookingAppButtonLabel: t("book_now"),
+        ...(organizationId ? extraOrganizationConfig[organizationId] : {}),
+        ...(projectId ? extraProjectConfig[projectId] : {}),
+      } as WhitelabelContextType;
+      setWhitelabel(mergedWhitelabel);
+      console.log("mergedWhitelabel", mergedWhitelabel);
+    }
+  }, [project]);
+
   return (
     <I18nextProvider i18n={i18n}>
-      <WhitelabelContext.Provider value={whitelabelContextValue}>
+      <WhitelabelContext.Provider value={whitelabel}>
         {project && (
           <>
-            <Header
-              query={query}
-              label={label}
-              projects={projects || []}
-              labels={project.labels || []}
-            />
+            <Header query={query} label={label} projects={projects} />
             {(!query || query.length < 3) && (!label || label.length < 2) && (
-              <ServicesList
-                projectId={projectId}
-                locale={project.defaultLocale}
-              />
+              <ServicesList projectId={projectId} />
             )}
             {query?.length > 2 && (
-              <ServicesSearch
-                projectId={projectId}
-                query={query}
-                locale={project.defaultLocale}
-              />
+              <ServicesSearch projectId={projectId} query={query} />
             )}
             {label?.length > 1 && (
-              <ServicesLabels
-                projectId={projectId}
-                label={label}
-                locale={project.defaultLocale}
-              />
+              <ServicesLabels projectId={projectId} label={label} />
             )}
           </>
         )}

@@ -12,7 +12,7 @@ export const GET = async (
 ) => {
   try {
     let query: string = JSON.stringify({
-      query: `{ services(projectId:"${projectId}" featured:true limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
+      query: `{ services(projectId:"${projectId}" featured:true draft:false limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
     });
     const response = await fetch(Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT, {
       method: "POST",

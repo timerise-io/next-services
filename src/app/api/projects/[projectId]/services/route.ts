@@ -25,15 +25,15 @@ export const GET = async (
     }
     if (q && !l) {
       query = JSON.stringify({
-        query: `{ services(projectId:"${projectId}", query:"${q}") { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }`,
+        query: `{ services(projectId:"${projectId}" query:"${q}" draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }`,
       });
     } else if (l && !q) {
       query = JSON.stringify({
-        query: `{ services(projectId:"${projectId}", query:"${l}") { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }`,
+        query: `{ services(projectId:"${projectId}" query:"${l}" draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }`,
       });
     } else {
       query = JSON.stringify({
-        query: `{ services(projectId:"${projectId}" limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
+        query: `{ services(projectId:"${projectId}" draft:false limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
       });
     }
     const response = await fetch(Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT, {

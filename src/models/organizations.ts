@@ -18,7 +18,7 @@ export const fetchOrganization = async (
 };
 
 export const fetchProjectsByOrganization = async (
-  organizationId: string | null
+  organizationId: string | undefined
 ): Promise<ProjectInterface[]> => {
   if (!organizationId) {
     return [] as ProjectInterface[];

@@ -1,59 +1,58 @@
-'use client';
+"use client";
 
-import { CSSProperties } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import Logo from './Logo';
-import LabelsFilterBox from './LabelsFilterBox';
-import SearchBox from './SearchBox';
-import { mediaQueries } from '@/utlis/MediaQueries';
-import { useWhitelabel } from '@/context/Whitelabel';
-import ProjectsFilterBox from './ProjectsFilterBox';
+import { CSSProperties } from "react";
+import { useMediaQuery } from "react-responsive";
+import Logo from "./Logo";
+import LabelsBox from "./LabelsBox";
+import SearchBox from "./SearchBox";
+import { mediaQueries } from "@/utlis/MediaQueries";
+import { useWhitelabel } from "@/context/Whitelabel";
+import ProjectsBox from "./ProjectsBox";
 
-function Header(props: { query: string, label: string, projects?: { projectId: string; title: string }[], labels?: string[] }) {
+function Header(props: {
+  query: string;
+  label: string;
+  projects?: { projectId: string; title: string }[];
+}) {
+  const { query, label, projects } = props;
 
-  const { query, label, projects, labels } = props;
-
-  console.log(projects)
-  
   const isMobile = useMediaQuery({ query: mediaQueries.isMobile });
-  const { searchShow } = useWhitelabel();
+  const { projectId, searchBox, labelsBox, projectsBox, labels } =
+    useWhitelabel();
 
   const componentStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: isMobile ? 'column' : 'row',
-    alignItems: isMobile ? 'start' : 'center',
-    justifyContent: 'space-between',
-    gap: '10px',
-    margin: '10px',
-    padding: '30px 0px',
+    display: "flex",
+    flexDirection: isMobile ? "column" : "row",
+    alignItems: isMobile ? "start" : "center",
+    justifyContent: "space-between",
+    gap: "10px",
+    margin: "10px",
+    padding: "30px 0px",
   };
 
   const formStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: isMobile ? 'column' : 'row',
-    textAlign: 'left',
-    gap: '10px',
-    width: isMobile ? '100%' : 'auto',
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: isMobile ? "column" : "row",
+    textAlign: "left",
+    gap: "10px",
+    width: isMobile ? "100%" : "auto",
   };
 
   return (
     <div style={componentStyle}>
       <Logo />
-      {searchShow && searchShow === true && (
       <div style={formStyle}>
-        <SearchBox query={query} />
-        {projects && projects.length > 0 && (
-        <ProjectsFilterBox projects={projects} projectId={''} label={''} />
+        {searchBox && searchBox === true && <SearchBox query={query} />}
+        {projectsBox && projects && projects.length > 0 && (
+          <ProjectsBox projects={projects} projectId={projectId} />
         )}
-        {labels && labels.length > 0 && (
-        <LabelsFilterBox labels={labels} label={label} />
+        {labelsBox && labels && labels.length > 0 && (
+          <LabelsBox label={label} />
         )}
       </div>
-      )}
     </div>
   );
-
 }
 
 export default Header;

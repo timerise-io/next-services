@@ -1,54 +1,34 @@
-'use client'
+"use client";
 
-import { createContext, useContext } from 'react';
+import { WhitelabelContextType } from "@/utlis/Types";
+import { createContext, useContext } from "react";
+import { useTranslation } from "react-i18next";
 
-export type WhitelabelContextType = {
-  organizationId: string | null;
-  projectId: string | null;
-  title: string;
-  iconSrc: string;
-  bookingPageDomain: string;
-  logoUrl: string;
-  logoHeight: number;
-  logoHref: string;
-  searchShow: boolean;
-  searchInputLabel: string;
-  searchInputPlaceholder: string;
-  labelsSelectLabel: string;
-  labels: string[];
-  projectsSelectLabel: string;
-  bookButtonLabel: string;
-  termsUrl: string;
-  privacyUrl: string;
-  poweredByLogoUrl: string;
-  poweredByLogoHref: string;
-  poweredByLogoHeight: number;
-};
-
-const defaultValue: WhitelabelContextType = {
-  organizationId: null,
-  projectId: null,
-  title: 'Timerise',
-  iconSrc: "https://cdn.timerise.io/landing-page/favicon.png",
-  bookingPageDomain: 'dev-booking.timerise.io',
-  logoUrl: 'https://cdn.timerise.io/landing-page/favicon.png',
-  logoHeight: 60,
-  logoHref: '/' + 1,
-  searchShow: true,
-  searchInputLabel: 'null',
-  searchInputPlaceholder: 'null',
-  labelsSelectLabel: "label",
+export const defaultWhitelabelContextValue: WhitelabelContextType = {
+  organizationId: undefined,
+  projectId: undefined,
+  locale: "en-PL",
+  title: "Marketplace App - Timerise.io",
+  iconUrl: "https://cdn.timerise.io/landing-page/favicon.png",
+  logoUrl: "https://cdn.timerise.io/landing-page/favicon.png",
+  searchBox: true,
+  searchBoxLabel: "Search",
+  searchBoxPlaceholder: "Service, location...",
+  labelsBox: true,
+  labelsBoxLabel: "Label",
   labels: [],
-  projectsSelectLabel: 'Projects',
-  bookButtonLabel: 'book now',
-  termsUrl: 'https://timerise.io/legal-tac-en.html',
-  privacyUrl: 'https://timerise.io/legal-pp-en.html',
-  poweredByLogoUrl: 'https://cdn.timerise.io/app/powered.png',
-  poweredByLogoHref: 'https://timerise.io',
-  poweredByLogoHeight: 14,
+  projectsBox: true,
+  projectsBoxLabel: "Projects",
+  bookingAppButtonLabel: "Book now",
+  bookingAppUrl: "https://booking.timerise.io",
+  termsUrl: "https://timerise.io/legal-tac-en.html",
+  privacyUrl: "https://timerise.io/legal-pp-en.html",
+  poweredByLogoUrl: "https://cdn.timerise.io/app/powered.png",
 };
 
-export const WhitelabelContext = createContext<WhitelabelContextType>(defaultValue);
+export const WhitelabelContext = createContext<WhitelabelContextType>(
+  defaultWhitelabelContextValue
+);
 
 export const useWhitelabel = () => {
   return useContext(WhitelabelContext);

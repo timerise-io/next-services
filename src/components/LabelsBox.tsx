@@ -5,11 +5,12 @@ import { useTranslation } from "react-i18next";
 
 const boxStyle: CSSProperties = {
   display: "flex",
+  alignItems: "center",
   backgroundColor: "var(--secondary-color)",
   border: "none",
   borderRadius: "4px",
   paddingLeft: "12px",
-  height: "38px",
+  height: "42px",
   boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.08)",
 };
 
@@ -27,13 +28,13 @@ const labelStyle: CSSProperties = {
   fontSize: "13px",
 };
 
-function LabelsFilterBox(props: { labels: string[]; label: string }) {
+function LabelsBox(props: { label: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const { labels, label } = props;
-  const { labelsSelectLabel } = useWhitelabel();
+  const { label } = props;
+  const { labelsBoxLabel, labels } = useWhitelabel();
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -54,7 +55,7 @@ function LabelsFilterBox(props: { labels: string[]; label: string }) {
 
   return (
     <div style={boxStyle}>
-      <span style={labelStyle}>{labelsSelectLabel}:</span>
+      <span style={labelStyle}>{labelsBoxLabel}:</span>
       <select onChange={handleChange} value={label} style={selectStyle}>
         <option value="">{t("all")}</option>
         {labels &&
@@ -69,4 +70,4 @@ function LabelsFilterBox(props: { labels: string[]; label: string }) {
   );
 }
 
-export default LabelsFilterBox;
+export default LabelsBox;

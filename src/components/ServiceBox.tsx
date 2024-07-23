@@ -7,11 +7,7 @@ import Link from "next/link";
 import { useWhitelabel } from "@/context/Whitelabel";
 import Image from "next/image";
 
-function ServiceBox(props: {
-  locale: string;
-  service: ServiceInterface;
-  userLocale?: string | null | undefined;
-}) {
+function ServiceBox(props: { service: ServiceInterface }) {
   const {
     serviceId,
     media,
@@ -24,12 +20,9 @@ function ServiceBox(props: {
     currency,
   } = props.service;
 
-  const { locale, userLocale } = props;
+  const { bookingAppUrl, bookingAppButtonLabel, locale } = useWhitelabel();
 
-  const { bookButtonLabel, bookingPageDomain } = useWhitelabel();
-
-  const bookingPageUrl: string =
-    "https://" + bookingPageDomain + "/service/" + serviceId;
+  const bookingPageUrl: string = bookingAppUrl + "/service/" + serviceId;
 
   const isMobile = useMediaQuery({ query: mediaQueries.isMobile });
   const isTablet = useMediaQuery({ query: mediaQueries.isTablet });
@@ -142,10 +135,10 @@ function ServiceBox(props: {
       </div>
       <div className="w-full mt-10">
         <Link
-          href={bookingPageUrl + (userLocale ? "?locale=" + userLocale : "")}
+          href={bookingPageUrl + (locale ? "?locale=" + locale : "")}
           className="h-10 font-bold w-full"
         >
-          {bookButtonLabel}
+          {bookingAppButtonLabel}
         </Link>
       </div>
     </div>

@@ -1,3 +1,25 @@
+export type WhitelabelContextType = {
+  organizationId: string | undefined;
+  projectId: string | undefined;
+  locale: string;
+  title: string;
+  iconUrl: string;
+  logoUrl: string;
+  searchBox: boolean;
+  searchBoxLabel: string;
+  searchBoxPlaceholder: string;
+  labelsBox: boolean;
+  labelsBoxLabel: string;
+  labels: string[];
+  projectsBox: boolean;
+  projectsBoxLabel: string;
+  bookingAppButtonLabel: string;
+  bookingAppUrl: string;
+  termsUrl: string;
+  privacyUrl: string;
+  poweredByLogoUrl: string;
+};
+
 export enum TimeFormat {
   AM_PM = 'AM_PM',
   HOUR_24 = 'HOUR_24',
