@@ -35,7 +35,7 @@ export default function OrganizationHome(props: {
     // services.bloomyhealth.pl
     XFV6dCD8YZM3IeOiOz3z: {
       labelsBox: false,
-      projectsBoxLabel: t("clinics"),
+      projectsBoxLabel: t("clinic"),
     },
   };
 
@@ -52,8 +52,8 @@ export default function OrganizationHome(props: {
           iconUrl: organization.iconUrl || organization.logoUrl,
         }),
         searchBoxLabel: t("search"),
-        projectsBoxLabel: t("projects"),
-        labelsBoxLabel: t("labels"),
+        projectsBoxLabel: t("project"),
+        labelsBoxLabel: t("label"),
         bookingAppButtonLabel: t("book_now"),
         ...extraOrganizationConfig[organizationId],
       } as WhitelabelContextType;

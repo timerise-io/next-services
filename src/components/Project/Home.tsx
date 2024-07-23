@@ -38,7 +38,7 @@ export default function ProjectHome(props: {
     // services.bloomyhealth.pl
     XFV6dCD8YZM3IeOiOz3z: {
       labelsBox: false,
-      projectsBoxLabel: t("clinics"),
+      projectsBoxLabel: t("clinic"),
     },
   };
 
@@ -58,8 +58,8 @@ export default function ProjectHome(props: {
           iconUrl: project.iconUrl || project.logoUrl,
         }),
         searchBoxLabel: t("search"),
-        projectsBoxLabel: t("projects"),
-        labelsBoxLabel: t("labels"),
+        projectsBoxLabel: t("project"),
+        labelsBoxLabel: t("label"),
         bookingAppButtonLabel: t("book_now"),
         ...(organizationId ? extraOrganizationConfig[organizationId] : {}),
         ...(projectId ? extraProjectConfig[projectId] : {}),
