@@ -53,7 +53,7 @@ export default function ProjectHome(props: {
         title: project.title,
         labels: project.labels,
         locale: project.defaultLocale,
-        searchBoxLabel: t("projects"),
+        searchBoxLabel: t("search"),
         projectsBoxLabel: t("projects"),
         labelsBoxLabel: t("labels"),
         bookingAppButtonLabel: t("book_now"),

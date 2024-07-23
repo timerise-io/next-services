@@ -40,14 +40,14 @@ export default function OrganizationHome(props: {
 
   useEffect(() => {
     if (organization) {
-      i18n.changeLanguage(organization.defaultLocale);
+      //i18n.changeLanguage(organization.defaultLocale);
       const mergedWhitelabel = {
         ...whitelabel,
         organizationId,
         title: organization.title,
         labels: organization.labels,
         locale: organization.defaultLocale,
-        searchBoxLabel: t("projects"),
+        searchBoxLabel: t("search"),
         projectsBoxLabel: t("projects"),
         labelsBoxLabel: t("labels"),
         bookingAppButtonLabel: t("book_now"),

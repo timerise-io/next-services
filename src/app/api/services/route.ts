@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 export const GET = async () => {
   try {
-    const query = JSON.stringify({ query:`{ services(limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }` });
+    const query = JSON.stringify({ query:`{ services(draft:false, limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }` });
     const response = await fetch(Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT, {
       method: 'POST',
       headers: {

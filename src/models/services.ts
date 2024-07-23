@@ -17,6 +17,25 @@ export const fetchServicesByProject = async (
   return [] as ServiceInterface[];
 };
 
+export const fetchFeaturedServicesByProject = async (
+  projectId: string
+): Promise<ServiceInterface[]> => {
+  const response = await fetch(
+    "/api/projects/" + projectId + "/services/featured",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  if (response.ok) {
+    const data = await response.json();
+    return data as ServiceInterface[];
+  }
+  return [] as ServiceInterface[];
+};
+
 export const fetchServicesByProjectAndQuery = async (
   projectId: string,
   query: string
@@ -62,6 +81,25 @@ export const fetchServicesByOrganization = async (
 ): Promise<ServiceInterface[]> => {
   const response = await fetch(
     "/api/organizations/" + organizationId + "/services",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  if (response.ok) {
+    const data = await response.json();
+    return data as ServiceInterface[];
+  }
+  return [] as ServiceInterface[];
+};
+
+export const fetchFeaturedServicesByOrganization = async (
+  organizationId: string
+): Promise<ServiceInterface[]> => {
+  const response = await fetch(
+    "/api/organizations/" + organizationId + "/services/featured",
     {
       method: "GET",
       headers: {

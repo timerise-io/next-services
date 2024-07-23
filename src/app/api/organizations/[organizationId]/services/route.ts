@@ -22,11 +22,11 @@ export const GET = async (
       return handleZodError('Query parameter must be at least 3 characters long');
     }
     if(q && !l) {
-      query = JSON.stringify({ query:`{ services(organizationId:"${organizationId}" query:"${q}" draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }` });
+      query = JSON.stringify({ query:`{ services(organizationId:"${organizationId}", query:"${q}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }` });
     } else if(l && !q) {
-      query = JSON.stringify({ query:`{ services(organizationId:"${organizationId}" query:"${l}" draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }` });
+      query = JSON.stringify({ query:`{ services(organizationId:"${organizationId}", query:"${l}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }` });
     } else {
-      query = JSON.stringify({ query:`{ services(organizationId:"${organizationId}" featured:true draft:false limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }` });
+      query = JSON.stringify({ query:`{ services(organizationId:"${organizationId}", draft:false, limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }` });
     }
     const response = await fetch(Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT, {
       method: 'POST',

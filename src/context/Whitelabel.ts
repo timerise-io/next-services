@@ -2,15 +2,14 @@
 
 import { WhitelabelContextType } from "@/utlis/Types";
 import { createContext, useContext } from "react";
-import { useTranslation } from "react-i18next";
 
 export const defaultWhitelabelContextValue: WhitelabelContextType = {
   organizationId: undefined,
   projectId: undefined,
   locale: "en-PL",
-  title: "Marketplace App - Timerise.io",
+  title: "Marketplace App - Timerise",
   iconUrl: "https://cdn.timerise.io/landing-page/favicon.png",
-  logoUrl: "https://cdn.timerise.io/landing-page/favicon.png",
+  logoUrl: "https://cdn.timerise.io/landing-page/timerise-logo.png",
   searchBox: true,
   searchBoxLabel: "Search",
   searchBoxPlaceholder: "Service, location...",

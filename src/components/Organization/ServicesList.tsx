@@ -3,12 +3,12 @@ import ServiceBox from "../ServiceBox";
 import Loading from "../Loading";
 import EmptyList from "../EmptyList";
 import { ServiceInterface } from "@/utlis/Types";
-import { useOrganizationServices } from "@/hooks/SWR/useOrganizationServices";
+import { useOrganizationFeaturedServices } from "@/hooks/SWR/useOrganizationFeaturedServices";
 
 function ServicesList(props: { organizationId: string }) {
   const { organizationId } = props;
   const { services, isLoadingServices } =
-    useOrganizationServices(organizationId);
+    useOrganizationFeaturedServices(organizationId);
 
   const componentStyle: CSSProperties = {
     display: "flex",
