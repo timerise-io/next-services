@@ -41,7 +41,7 @@ function ServiceBox(props: { service: ServiceInterface }) {
 
   const localPrice = new Intl.NumberFormat(locale, {
     style: "currency",
-    currency: currency,
+    currency: currency || "USD",
   });
 
   const mediaUrl =
