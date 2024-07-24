@@ -26,6 +26,7 @@ function ServiceBox(props: { service: ServiceInterface }) {
     bookingAppUrl,
     bookingAppButtonLabel,
     locale,
+    featuredLabel,
     primaryColor,
     secondaryColor,
   } = useWhitelabel();
@@ -66,7 +67,7 @@ function ServiceBox(props: { service: ServiceInterface }) {
     >
       <div>
         <div className="h-64 mb-3 relative">
-          {featured && (
+          {featuredLabel && featured && (
             <span
               className="absolute top-2 right-2 text-white text-[12px] font-medium px-2 py-1 rounded"
               style={{ background: secondaryColor, zIndex: 9999 }}

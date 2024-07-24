@@ -23,6 +23,7 @@ export const defaultWhitelabelContextValue: WhitelabelContextType = {
   termsUrl: "https://timerise.io/legal-tac-en.html",
   privacyUrl: "https://timerise.io/legal-pp-en.html",
   poweredByLogoUrl: "https://cdn.timerise.io/app/powered.png",
+  featuredLabel: false,
   primaryColor: "#000000",
   secondaryColor: "#000000",
 };

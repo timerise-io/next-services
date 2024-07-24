@@ -36,6 +36,7 @@ export default function OrganizationHome(props: {
     XFV6dCD8YZM3IeOiOz3z: {
       labelsBox: false,
       projectsBoxLabel: t("clinic"),
+      featuredLabel: true,
       primaryColor: "#4255c5",
       secondaryColor: "#d1008a",
     },

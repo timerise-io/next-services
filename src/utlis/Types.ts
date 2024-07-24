@@ -18,6 +18,7 @@ export type WhitelabelContextType = {
   termsUrl: string;
   privacyUrl: string;
   poweredByLogoUrl: string;
+  featuredLabel: boolean;
   primaryColor: string;
   secondaryColor: string;
 };
