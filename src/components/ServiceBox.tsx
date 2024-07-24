@@ -153,8 +153,8 @@ function ServiceBox(props: { service: ServiceInterface }) {
         >
           <Link
             href={bookingPageUrl + (locale ? "?locale=" + locale : "")}
-            className={`flex py-2 text-sm font-bold w-full justify-center items-center hover:text-white`}
-            style={isHover ? { backgroundColor: primaryColor } : undefined}
+            className={`flex py-2 text-sm font-bold w-full justify-center items-center`}
+            style={isHover ? { color: '#FFFFFF', backgroundColor: primaryColor } : { color: primaryColor }}
           >
             {bookingAppButtonLabel}
           </Link>
