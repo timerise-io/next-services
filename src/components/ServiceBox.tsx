@@ -1,11 +1,12 @@
 import { ServiceInterface } from "@/utlis/Types";
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import ReactMarkdown from "react-markdown";
 import { mediaQueries } from "@/utlis/MediaQueries";
 import Link from "next/link";
 import { useWhitelabel } from "@/context/Whitelabel";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 function ServiceBox(props: { service: ServiceInterface }) {
   const {
@@ -18,12 +19,21 @@ function ServiceBox(props: { service: ServiceInterface }) {
     durationInfo,
     price,
     currency,
+    featured,
   } = props.service;
 
-  const { bookingAppUrl, bookingAppButtonLabel, locale } = useWhitelabel();
+  const {
+    bookingAppUrl,
+    bookingAppButtonLabel,
+    locale,
+    primaryColor,
+    secondaryColor,
+  } = useWhitelabel();
 
   const bookingPageUrl: string = bookingAppUrl + "/service/" + serviceId;
 
+  const [isHover, setIsHover] = useState<boolean>(false);
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: mediaQueries.isMobile });
   const isTablet = useMediaQuery({ query: mediaQueries.isTablet });
 
@@ -54,11 +64,16 @@ function ServiceBox(props: { service: ServiceInterface }) {
       style={boxStyle}
       className="flex flex-col justify-between items-start p-5 m-2.5"
     >
-      <div style={{ width: "100%" }}>
-        <div
-          className="mb-3"
-          style={{ position: "relative", width: "100%", height: "256px" }}
-        >
+      <div>
+        <div className="h-64 mb-3 relative">
+          {featured && (
+            <span
+              className="absolute top-2 right-2 text-white text-[12px] font-medium px-2 py-1 rounded"
+              style={{ background: secondaryColor, zIndex: 9999 }}
+            >
+              {t("featured")}
+            </span>
+          )}
           <Image
             fill
             src={mediaUrl}
@@ -81,7 +96,7 @@ function ServiceBox(props: { service: ServiceInterface }) {
               height={16}
               src="https://cdn.timerise.io/app/info-address.png"
               alt="Host"
-              className="w-4 mr-2"
+              className="mr-2"
             />
             <div>
               <p className="text-sm font-semibold">{locations[0].title}</p>
@@ -95,11 +110,9 @@ function ServiceBox(props: { service: ServiceInterface }) {
               height={16}
               src="https://cdn.timerise.io/app/info-host.png"
               alt="Host"
-              className="w-4 mr-2"
+              className="mr-2"
             />
-            <div>
-              <p className="text-sm font-semibold">{hosts[0].fullName}</p>
-            </div>
+            <p className="text-sm font-semibold">{hosts[0].fullName}</p>
           </div>
         )}
         {durationInfo && (
@@ -109,11 +122,9 @@ function ServiceBox(props: { service: ServiceInterface }) {
               height={16}
               src="https://cdn.timerise.io/app/info-duration.png"
               alt="Duration"
-              className="w-4 mr-2"
+              className="mr-2"
             />
-            <div>
-              <p className="text-sm font-semibold">{durationInfo}</p>
-            </div>
+            <p className="text-sm font-semibold">{durationInfo}</p>
           </div>
         )}
         {!!price && price > 0 && (
@@ -123,24 +134,31 @@ function ServiceBox(props: { service: ServiceInterface }) {
               height={16}
               src="https://cdn.timerise.io/app/info-price.png"
               alt="Price"
-              className="w-4 mr-2"
+              className="mr-2"
             />
-            <div>
-              <p className="text-sm font-semibold">
-                {localPrice.format(price)}
-              </p>
-            </div>
+
+            <p className="text-sm font-semibold m-0">
+              {localPrice.format(price)}
+            </p>
           </div>
         )}
       </div>
-      <div className="w-full mt-10">
-        <Link
-          href={bookingPageUrl + (locale ? "?locale=" + locale : "")}
-          className="h-10 font-bold w-full"
+      {primaryColor && (
+        <div
+          className={`w-full mt-10 border-[1px] rounded-md text-center`}
+          style={{ borderColor: primaryColor }}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
         >
-          {bookingAppButtonLabel}
-        </Link>
-      </div>
+          <Link
+            href={bookingPageUrl + (locale ? "?locale=" + locale : "")}
+            className={`flex py-2 text-sm font-bold w-full justify-center items-center hover:text-white`}
+            style={isHover ? { backgroundColor: primaryColor } : undefined}
+          >
+            {bookingAppButtonLabel}
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

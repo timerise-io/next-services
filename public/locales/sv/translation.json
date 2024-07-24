@@ -9,5 +9,6 @@
     "pp": "Integritetspolicy",
     "t_and_c": "Villkor",
     "timezone": "Tidszon",
-    "locale": "Språk"
+    "locale": "Språk",
+    "featured": "Utvalda"
 }

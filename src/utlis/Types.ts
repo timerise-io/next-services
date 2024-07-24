@@ -18,6 +18,8 @@ export type WhitelabelContextType = {
   termsUrl: string;
   privacyUrl: string;
   poweredByLogoUrl: string;
+  primaryColor: string;
+  secondaryColor: string;
 };
 
 export enum TimeFormat {
@@ -91,4 +93,6 @@ export interface ServiceInterface {
   media?: { 
     url: string; 
   }[];
+  draft?: boolean;
+  featured?: boolean;
 }

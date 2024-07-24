@@ -9,5 +9,6 @@
     "pp": "Tietosuojakäytäntö",
     "t_and_c": "Käyttöehdot",
     "timezone": "Aikavyöhyke",
-    "locale": "Sijainti"
+    "locale": "Sijainti",
+    "featured": "Suositeltu"
 }
