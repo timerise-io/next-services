@@ -37,6 +37,9 @@ export default function ProjectHome(props: {
   const extraOrganizationConfig: { [organizationId: string]: any } = {
     // services.bloomyhealth.pl
     XFV6dCD8YZM3IeOiOz3z: {
+      bookingAppUrl: "https://booking.bloomyhealth.pl",
+      termsUrl: "https://bloomyhealth.pl/terms",
+      privacyUrl: "https://bloomyhealth.pl/privacy",
       labelsBox: false,
       projectsBoxLabel: t("clinic"),
       featuredLabel: true,

@@ -6,7 +6,7 @@ const ORGANIZATIONS: Record<string, string> = {
   "services.timerise.io": DEFAULT_ORG_ID,
   "services.doc-knock.com": "4lXg18S1BRavFG3B85KH",
   "events.byobstl.com": "pGwmFfqIOaEausw14jzh",
-  "services.bloomyhealth.pl": "XFV6dCD8YZM3IeOiOz3z",
+  "bookings.bloomyhealth.pl": "XFV6dCD8YZM3IeOiOz3z",
 };
 
 export function getOrganizationId(domain: string): string {
