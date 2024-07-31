@@ -1,9 +1,11 @@
+export const fetchCache = "force-no-store";
+
 import { Env } from "@/utlis/Env";
 import { handleZodError } from "@/utlis/Zod";
 import { NextResponse } from "next/server";
 
 export const GET = async (
-  request: Request,
+  _: Request,
   {
     params: { projectId },
   }: {

@@ -12,7 +12,7 @@ function EmptyList() {
   };
 
   return (
-    <div style={componentStyle}>
+    <div style={componentStyle} className="text-sm">
       <p>No results</p>
     </div>
   );

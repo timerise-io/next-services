@@ -1,9 +1,9 @@
 import useSWR, { mutate } from 'swr';
 
-import { fetchServicesByOrganization } from '@/models/services';
+import { fetchServicesByOrganizationAndQuery } from '@/models/services';
 
 export function useOrganizationServicesQuery(organizationId: string, query: string) {
-  const { data, error } = useSWR([`services-${organizationId}`, query], () => fetchServicesByOrganization(organizationId));
+  const { data, error } = useSWR([`services-${organizationId}`, query], () => fetchServicesByOrganizationAndQuery(organizationId, query));
   return {
     services: data,
     isLoadingServices: !error && !data,
@@ -13,7 +13,7 @@ export function useOrganizationServicesQuery(organizationId: string, query: stri
 
 export function useOrganizationServicesQueryReload(organizationId: string, query: string) {
   const reloadServices = async () => {
-      await mutate([`services-${organizationId}`, query], fetchServicesByOrganization(organizationId), false);
+      await mutate([`services-${organizationId}`, query], fetchServicesByOrganizationAndQuery(organizationId, query), false);
   };
   return {
     reloadServices,

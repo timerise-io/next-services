@@ -1,3 +1,5 @@
+export const fetchCache = "force-no-store";
+
 import { Env } from "@/utlis/Env";
 import { handleZodError } from "@/utlis/Zod";
 import { NextResponse } from "next/server";

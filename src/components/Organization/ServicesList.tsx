@@ -10,16 +10,8 @@ function ServicesList(props: { organizationId: string }) {
   const { services, isLoadingServices } =
     useOrganizationFeaturedServices(organizationId);
 
-  const componentStyle: CSSProperties = {
-    display: "flex",
-    justifyItems: "start",
-    justifyContent: "start",
-    flexDirection: "row",
-    flexWrap: "wrap",
-  };
-
   return (
-    <div style={componentStyle}>
+    <div className="flex flex-row flex-wrap justify-start">
       {isLoadingServices && <Loading />}
       {services && services.length === 0 && <EmptyList />}
       {services &&
