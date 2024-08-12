@@ -64,7 +64,7 @@ export default function OrganizationHome(props: {
         ...extraOrganizationConfig[organizationId],
       } as WhitelabelContextType;
       setWhitelabel(mergedWhitelabel);
-      console.log("mergedWhitelabel", mergedWhitelabel);
+      // console.log("mergedWhitelabel", mergedWhitelabel);
     }
   }, [organization]);
 
