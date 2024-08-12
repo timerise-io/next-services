@@ -5,10 +5,10 @@ import React from "react";
 import { useWhitelabel } from "@/context/Whitelabel";
 
 function Logo() {
-  const { title, logoUrl } = useWhitelabel();
+  const { organizationId, projectId, title, logoUrl } = useWhitelabel();
 
   return (
-    <Link href={"/"}>
+    <Link href={organizationId ? '/' : '/' + projectId}>
       <img src={logoUrl} alt={title} className="max-h-6" />
     </Link>
   );

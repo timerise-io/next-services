@@ -17,6 +17,7 @@ import i18n, { prepareLocale } from "@/utlis/i18n";
 import { useEffect, useState } from "react";
 import { WhitelabelContextType } from "@/utlis/Types";
 import { pickBy } from "lodash";
+import { DEFAULT_ORG_ID } from "@/utlis/Whitelabel";
 export default function ProjectHome(props: {
   organizationId: string | undefined;
   projectId: string;
@@ -55,7 +56,6 @@ export default function ProjectHome(props: {
       const mergedWhitelabel = {
         ...whitelabel,
         ...pickBy({
-          organizationId,
           projectId,
           title: project.title,
           labels: project.labels,
@@ -68,10 +68,11 @@ export default function ProjectHome(props: {
         labelsBoxLabel: t("label"),
         bookingAppButtonLabel: t("book_now"),
         ...(organizationId ? extraOrganizationConfig[organizationId] : {}),
+        organizationId: organizationId !== DEFAULT_ORG_ID ? organizationId : null,
         ...(projectId ? extraProjectConfig[projectId] : {}),
       } as WhitelabelContextType;
       setWhitelabel(mergedWhitelabel);
-      console.log("mergedWhitelabel", mergedWhitelabel);
+      // console.log("mergedWhitelabel", mergedWhitelabel);
     }
   }, [project]);
 

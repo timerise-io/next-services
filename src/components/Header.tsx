@@ -17,7 +17,7 @@ function Header(props: {
   const { query, label, projects } = props;
 
   const isMobile = useMediaQuery({ query: mediaQueries.isMobile });
-  const { projectId, searchBox, labelsBox, projectsBox, labels } =
+  const { organizationId, projectId, searchBox, labelsBox, projectsBox, labels } =
     useWhitelabel();
 
   const componentStyle: CSSProperties = {
@@ -44,7 +44,7 @@ function Header(props: {
       <Logo />
       <div style={formStyle}>
         {searchBox && searchBox === true && <SearchBox query={query} />}
-        {projectsBox && projects && projects.length > 0 && (
+        {organizationId && projectsBox && projects && projects.length > 0 && (
           <ProjectsBox projects={projects} projectId={projectId} />
         )}
         {labelsBox && labels && labels.length > 0 && (
