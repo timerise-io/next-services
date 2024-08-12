@@ -1,5 +1,5 @@
-//const DEFAULT_ORG_ID: string = "XD1JnLAaKlObbYS6xnuY";
-const DEFAULT_ORG_ID: string = "XFV6dCD8YZM3IeOiOz3z";
+const DEFAULT_ORG_ID: string = "XD1JnLAaKlObbYS6xnuY";
+// const DEFAULT_ORG_ID: string = "XFV6dCD8YZM3IeOiOz3z"; // bloomy health
 
 const ORGANIZATIONS: Record<string, string> = {
   "localhost:3000": DEFAULT_ORG_ID,
