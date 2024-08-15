@@ -10,5 +10,6 @@
     "t_and_c": "Villkor",
     "timezone": "Tidszon",
     "locale": "Språk",
-    "featured": "Utvalda"
+    "featured": "Utvalda",
+    "category": "Kategori"
 }

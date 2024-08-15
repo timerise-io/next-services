@@ -10,5 +10,6 @@
     "t_and_c": "Käyttöehdot",
     "timezone": "Aikavyöhyke",
     "locale": "Sijainti",
-    "featured": "Suositeltu"
+    "featured": "Suositeltu",
+    "category": "Kategoria"
 }

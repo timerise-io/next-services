@@ -43,13 +43,13 @@ function Header(props: {
     <div style={componentStyle}>
       <Logo />
       <div style={formStyle}>
-        {searchBox && searchBox === true && <SearchBox query={query} />}
-        {organizationId && projectsBox && projects && projects.length > 0 && (
-          <ProjectsBox projects={projects} projectId={projectId} />
-        )}
         {labelsBox && labels && labels.length > 0 && (
           <LabelsBox label={label} />
         )}
+        {organizationId && projectsBox && projects && projects.length > 0 && (
+          <ProjectsBox projects={projects} projectId={projectId} />
+        )}
+        {searchBox && searchBox === true && <SearchBox query={query} />}
       </div>
     </div>
   );
