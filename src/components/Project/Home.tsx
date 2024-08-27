@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { WhitelabelContextType } from "@/utlis/Types";
 import { pickBy } from "lodash";
 import { DEFAULT_ORG_ID } from "@/utlis/Whitelabel";
+import { useOrganization } from "@/hooks/SWR/useOrganization";
 export default function ProjectHome(props: {
   organizationId: string | undefined;
   projectId: string;
@@ -32,6 +33,7 @@ export default function ProjectHome(props: {
 
   const { t } = useTranslation();
 
+  const { organization } = useOrganization(organizationId as string);
   const { project } = useProject(projectId);
   const { projects } = useOrganizationProjects(organizationId);
 
@@ -41,7 +43,9 @@ export default function ProjectHome(props: {
       bookingAppUrl: "https://booking.bloomyhealth.pl",
       termsUrl: "https://bloomyhealth.pl/terms",
       privacyUrl: "https://bloomyhealth.pl/privacy",
-      labelsBox: false,
+      logoHref: "https://bloomyhealth.pl",
+      labelsBox: true,
+      labelsBoxLabel: t("category"),
       projectsBoxLabel: t("clinic"),
       featuredLabel: true,
       primaryColor: "#4255c5",
@@ -58,7 +62,7 @@ export default function ProjectHome(props: {
         ...pickBy({
           projectId,
           title: project.title,
-          labels: project.labels,
+          labels: organization?.labels || project.labels,
           locale: prepareLocale(i18n.language, project.defaultLocale),
           logoUrl: project.logoUrl,
           iconUrl: project.iconUrl || project.logoUrl,

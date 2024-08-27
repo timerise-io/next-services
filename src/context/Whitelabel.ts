@@ -10,6 +10,7 @@ export const defaultWhitelabelContextValue: WhitelabelContextType = {
   title: "Marketplace App - Timerise",
   iconUrl: "https://cdn.timerise.io/landing-page/favicon.png",
   logoUrl: "https://cdn.timerise.io/landing-page/timerise-logo.png",
+  logoHref: "/",
   searchBox: true,
   searchBoxLabel: "Search",
   searchBoxPlaceholder: "Service, location...",

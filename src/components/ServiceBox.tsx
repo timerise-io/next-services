@@ -20,6 +20,7 @@ function ServiceBox(props: { service: ServiceInterface }) {
     price,
     currency,
     featured,
+    project,
   } = props.service;
 
   const {
@@ -90,13 +91,29 @@ function ServiceBox(props: { service: ServiceInterface }) {
             <ReactMarkdown>{shortDescription}</ReactMarkdown>
           </div>
         )}
+
+        {project && (
+          <div className="flex flex-row items-start mt-2">
+            <Image
+              width={16}
+              height={16}
+              src="https://cdn.timerise.io/app/info-name.png"
+              alt="Project"
+              className="mr-2"
+            />
+            <div>
+              <p className="text-sm font-semibold">{project?.title}</p>
+            </div>
+          </div>
+        )}
+
         {locations && locations[0] && (
           <div className="flex flex-row items-start mt-2">
             <Image
               width={16}
               height={16}
               src="https://cdn.timerise.io/app/info-address.png"
-              alt="Host"
+              alt="Location"
               className="mr-2"
             />
             <div>
@@ -154,7 +171,11 @@ function ServiceBox(props: { service: ServiceInterface }) {
           <Link
             href={bookingPageUrl + (locale ? "?locale=" + locale : "")}
             className={`flex py-2 text-sm font-bold w-full justify-center items-center`}
-            style={isHover ? { color: '#FFFFFF', backgroundColor: primaryColor } : { color: primaryColor }}
+            style={
+              isHover
+                ? { color: "#FFFFFF", backgroundColor: primaryColor }
+                : { color: primaryColor }
+            }
           >
             {bookingAppButtonLabel}
           </Link>

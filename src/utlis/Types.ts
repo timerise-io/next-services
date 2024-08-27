@@ -5,6 +5,7 @@ export type WhitelabelContextType = {
   title: string;
   iconUrl: string;
   logoUrl: string;
+  logoHref: string;
   searchBox: boolean;
   searchBoxLabel: string;
   searchBoxPlaceholder: string;
@@ -81,6 +82,9 @@ export interface ServiceInterface {
   title: string; 
   shortDescription?: string; 
   description?: string;
+  project?: {
+    title: string;
+  };
   locations?: { 
     title: string; 
     address: string; 

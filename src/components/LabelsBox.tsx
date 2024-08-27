@@ -1,6 +1,6 @@
 import { ChangeEvent, CSSProperties, useCallback, useState } from "react";
 import { useWhitelabel } from "@/context/Whitelabel";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
 const boxStyle: CSSProperties = {
@@ -30,7 +30,7 @@ const labelStyle: CSSProperties = {
 
 function LabelsBox(props: { label: string }) {
   const router = useRouter();
-  const pathname = usePathname();
+  // const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const { label } = props;
@@ -48,7 +48,7 @@ function LabelsBox(props: { label: string }) {
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     const label: string = e.target.value;
-    router.push(`${pathname}?${createQueryString("label", label)}`);
+    router.push(`/?${createQueryString("label", label)}`);
   };
 
   const { t } = useTranslation();
