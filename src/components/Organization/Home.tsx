@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import ServicesLabels from "./ServicesLabels";
 import { WhitelabelContextType } from "@/utlis/Types";
 import { pickBy } from "lodash";
+import ServicesLabelsSearch from "./ServicesLabelsSearch";
 
 export default function OrganizationHome(props: {
   organizationId: string;
@@ -60,13 +61,13 @@ export default function OrganizationHome(props: {
           iconUrl: organization.iconUrl || organization.logoUrl,
         }),
         searchBoxLabel: t("search"),
+        searchBoxPlaceholder: t("search_placeholder"),
         projectsBoxLabel: t("project"),
         labelsBoxLabel: t("label"),
         bookingAppButtonLabel: t("book_now"),
         ...extraOrganizationConfig[organizationId],
       } as WhitelabelContextType;
       setWhitelabel(mergedWhitelabel);
-      // console.log("mergedWhitelabel", mergedWhitelabel);
     }
   }, [organization]);
 
@@ -79,11 +80,14 @@ export default function OrganizationHome(props: {
             {(!query || query.length < 3) && (!label || label.length < 3) && (
               <ServicesList organizationId={organizationId} />
             )}
-            {label && label.length > 2 && (
+            {label && label.length > 2 && (!query || query.length === 0) && (
               <ServicesLabels organizationId={organizationId} label={label} />
             )}
-            {query && query.length > 2 && (
+            {query && query.length > 2 && (!label || label.length === 0) && (
               <ServicesSearch organizationId={organizationId} query={query} />
+            )}
+            {query && query.length > 2 && (label && label.length > 2) && (
+              <ServicesLabelsSearch organizationId={organizationId} label={label} query={query} />
             )}
           </>
         )}

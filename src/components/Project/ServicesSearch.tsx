@@ -4,47 +4,17 @@ import Loading from "../Loading";
 import EmptyList from "../EmptyList";
 import { useProjectServices } from "@/hooks/SWR/useServices";
 import { ServiceInterface } from "@/utlis/Types";
+import { useProjectServicesQuery } from "@/hooks/SWR/useProjectServicesQuery";
 
 function ServicesSearch(props: {
   projectId: string;
   query: string;
 }) {
   const { projectId, query } = props;
-
-  // const GET_SERVICES_SEARCH = gql`
-  //   query GetServices {
-  //     services(projectId: "${projectId}" query: "${query}" draft: false) {
-  //       serviceId
-  //       project { title }
-  //       locations { title address }
-  //       hosts { fullName }
-  //       serviceId
-  //       featured
-  //       title
-  //       shortDescription
-  //       durationInfo
-  //       price
-  //       currency
-  //       shortUrl
-  //       media { url }
-  //       draft
-  //     }
-  //   }
-  // `;
-  // const { loading, data } = useQuery(GET_SERVICES_SEARCH);
-
-  const { services, isLoadingServices } = useProjectServices(projectId);
-
-  const componentStyle: CSSProperties = {
-    display: "flex",
-    justifyItems: "start",
-    justifyContent: "start",
-    flexDirection: "row",
-    flexWrap: "wrap",
-  };
+  const { services, isLoadingServices } = useProjectServicesQuery(projectId, query);
 
   return (
-    <div style={componentStyle}>
+    <div className="flex justify-start items-start flex-row flex-wrap">
       {isLoadingServices && <Loading />}
       {services && services.length === 0 && <EmptyList />}
       {services &&

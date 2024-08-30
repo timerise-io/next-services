@@ -153,3 +153,29 @@ export const fetchServicesByOrganizationAndLabel = async (
   }
   return [] as ServiceInterface[];
 };
+
+export const fetchServicesByOrganizationAndLabelAndQuery = async (
+  organizationId: string,
+  label: string,
+  query: string
+): Promise<ServiceInterface[]> => {
+  const response = await fetch(
+    "/api/organizations/" +
+      organizationId +
+      "/services?label=" +
+      label +
+      "&query=" +
+      query,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  if (response.ok) {
+    const data = await response.json();
+    return data as ServiceInterface[];
+  }
+  return [] as ServiceInterface[];
+};

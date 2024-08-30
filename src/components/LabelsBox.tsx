@@ -2,31 +2,7 @@ import { ChangeEvent, CSSProperties, useCallback, useState } from "react";
 import { useWhitelabel } from "@/context/Whitelabel";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
-
-const boxStyle: CSSProperties = {
-  display: "flex",
-  alignItems: "center",
-  backgroundColor: "var(--secondary-color)",
-  border: "none",
-  borderRadius: "4px",
-  paddingLeft: "12px",
-  height: "42px",
-  boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.08)",
-};
-
-const selectStyle: CSSProperties = {
-  marginTop: "0px",
-  width: "180px",
-  border: "none",
-  borderRadius: "4px",
-  fontWeight: "600",
-  fontSize: "13px",
-};
-
-const labelStyle: CSSProperties = {
-  fontWeight: "400",
-  fontSize: "13px",
-};
+import { Select } from "@headlessui/react";
 
 function LabelsBox(props: { label: string }) {
   const router = useRouter();
@@ -54,9 +30,9 @@ function LabelsBox(props: { label: string }) {
   const { t } = useTranslation();
 
   return (
-    <div style={boxStyle}>
-      <span style={labelStyle}>{labelsBoxLabel}:</span>
-      <select onChange={handleChange} value={label} style={selectStyle}>
+    <div className="flex items-center bg-[var(--secondary-color)] border-none rounded-md pl-3 h-[42px] shadow-sm pr-2">
+      <span className="text-[13px] font-normal">{labelsBoxLabel}:</span>
+      <Select onChange={handleChange} value={label} className="w-[180px] border-none rounded-md outline-none text-[13px] mt-[1px] font-semibold pl-2">
         <option value="">{t("all")}</option>
         {labels &&
           labels.length > 0 &&
@@ -65,7 +41,7 @@ function LabelsBox(props: { label: string }) {
               {label}
             </option>
           ))}
-      </select>
+      </Select>
     </div>
   );
 }

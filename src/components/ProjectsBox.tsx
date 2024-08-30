@@ -2,6 +2,7 @@ import { ChangeEvent, CSSProperties, useState } from "react";
 import { useWhitelabel } from "@/context/Whitelabel";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { Select } from "@headlessui/react";
 
 const boxStyle: CSSProperties = {
   display: "flex",
@@ -12,19 +13,6 @@ const boxStyle: CSSProperties = {
   paddingLeft: "12px",
   height: "42px",
   boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.08)",
-};
-
-const selectStyle: CSSProperties = {
-  width: "180px",
-  border: "none",
-  borderRadius: "4px",
-  fontWeight: "600",
-  fontSize: "13px",
-};
-
-const labelStyle: CSSProperties = {
-  fontWeight: "400",
-  fontSize: "13px",
 };
 
 function ProjectsBox(props: {
@@ -45,11 +33,11 @@ function ProjectsBox(props: {
   const { t } = useTranslation();
 
   return (
-    <div style={boxStyle}>
-      <span style={labelStyle}>{projectsBoxLabel}:</span>
-      <select
+    <div className="flex items-center bg-[var(--secondary-color)] border-none rounded-md pl-3 h-[42px] shadow-sm pr-2">
+      <span className="text-[13px] font-normal">{projectsBoxLabel}:</span>
+      <Select
         onChange={handleChange}
-        style={selectStyle}
+        className="w-[180px] border-none rounded-md outline-none text-[13px] mt-[1px] font-semibold pl-2"
         value={projectId}
       >
         <option value="">{t("all")}</option>
@@ -62,7 +50,7 @@ function ProjectsBox(props: {
               </option>
             )
           )}
-      </select>
+      </Select>
     </div>
   );
 }

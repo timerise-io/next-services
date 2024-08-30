@@ -1,6 +1,5 @@
 "use client";
-
-import { CSSProperties } from "react";
+import clsx from "clsx";
 import { useMediaQuery } from "react-responsive";
 import Logo from "./Logo";
 import LabelsBox from "./LabelsBox";
@@ -15,41 +14,32 @@ function Header(props: {
   projects?: { projectId: string; title: string }[];
 }) {
   const { query, label, projects } = props;
-
   const isMobile = useMediaQuery({ query: mediaQueries.isMobile });
-  const { organizationId, projectId, searchBox, labelsBox, projectsBox, labels } =
+  const { projectId, searchBox, labelsBox, projectsBox, labels } =
     useWhitelabel();
 
-  const componentStyle: CSSProperties = {
-    display: "flex",
-    flexDirection: isMobile ? "column" : "row",
-    alignItems: isMobile ? "start" : "center",
-    justifyContent: "space-between",
-    gap: "10px",
-    margin: "10px",
-    padding: "30px 0px",
-  };
-
-  const formStyle: CSSProperties = {
-    display: "flex",
-    justifyContent: "space-between",
-    flexDirection: isMobile ? "column" : "row",
-    textAlign: "left",
-    gap: "10px",
-    width: isMobile ? "100%" : "auto",
-  };
-
   return (
-    <div style={componentStyle}>
+    <div
+      className={clsx(
+        "flex gap-[10px] m-[10px] py-[30px] px-0",
+        isMobile ? "flex-col items-start" : "flex-row items-center",
+        "justify-between"
+      )}
+    >
       <Logo />
-      <div style={formStyle}>
+      <div
+        className={clsx(
+          "flex justify-between text-left gap-[10px]",
+          isMobile ? "flex-col w-full" : "flex-row w-auto"
+        )}
+      >
         {labelsBox && labels && labels.length > 0 && (
           <LabelsBox label={label} />
         )}
-        {organizationId && projectsBox && projects && projects.length > 0 && (
+        {projectsBox && projects && projects.length > 0 && (
           <ProjectsBox projects={projects} projectId={projectId} />
         )}
-        {searchBox && searchBox === true && <SearchBox query={query} />}
+        {searchBox && <SearchBox query={query} />}
       </div>
     </div>
   );

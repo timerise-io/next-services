@@ -1,6 +1,7 @@
 import { useWhitelabel } from "@/context/Whitelabel";
 import { ChangeEvent, CSSProperties, useCallback, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Input } from "@headlessui/react";
 
 const boxStyle: CSSProperties = {
   display: "flex",
@@ -11,19 +12,6 @@ const boxStyle: CSSProperties = {
   paddingLeft: "12px",
   height: "42px",
   boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.08)",
-};
-
-const labelStyle: CSSProperties = {
-  fontWeight: "400",
-  fontSize: "13px",
-};
-
-const inputStyle: CSSProperties = {
-  marginTop: "1px",
-  width: "100%",
-  border: "none",
-  fontWeight: "600",
-  fontSize: "13px",
 };
 
 function SearchBox(props: { query: string }) {
@@ -53,12 +41,12 @@ function SearchBox(props: { query: string }) {
 
   return (
     <div style={boxStyle}>
-      <span style={labelStyle}>{searchBoxLabel}:</span>
-      <input
+      <span className="text-[13px] font-normal">{searchBoxLabel}:</span>
+      <Input
         placeholder={searchBoxPlaceholder}
-        value={searchQuery}
+        defaultValue={searchQuery}
         onChange={handleSearch}
-        style={inputStyle}
+        className="outline-none text-[13px] border-none mt-[1px] w-full pl-2 font-semibold"
       />
     </div>
   );

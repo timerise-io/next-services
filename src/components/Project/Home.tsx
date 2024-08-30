@@ -9,7 +9,6 @@ import Header from "../Header";
 import Footer from "../Footer";
 import ServicesList from "./ServicesList";
 import ServicesSearch from "./ServicesSearch";
-import ServicesLabels from "./ServicesLabels";
 import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
 import { useProject } from "@/hooks/SWR/useProject";
 import { I18nextProvider, useTranslation } from "react-i18next";
@@ -46,10 +45,12 @@ export default function ProjectHome(props: {
       logoHref: "https://bloomyhealth.pl",
       labelsBox: true,
       labelsBoxLabel: t("category"),
+      projectsBox: true,
       projectsBoxLabel: t("clinic"),
       featuredLabel: true,
       primaryColor: "#4255c5",
       secondaryColor: "#d1008a",
+      organizationId: "XFV6dCD8YZM3IeOiOz3z",
     },
   };
 
@@ -64,10 +65,11 @@ export default function ProjectHome(props: {
           title: project.title,
           labels: organization?.labels || project.labels,
           locale: prepareLocale(i18n.language, project.defaultLocale),
-          logoUrl: project.logoUrl,
-          iconUrl: project.iconUrl || project.logoUrl,
+          logoUrl: project.logoUrl || organization?.logoUrl,
+          iconUrl: project.iconUrl || project.logoUrl || organization?.iconUrl,
         }),
         searchBoxLabel: t("search"),
+        searchBoxPlaceholder: t("search_placeholder"),
         projectsBoxLabel: t("project"),
         labelsBoxLabel: t("label"),
         bookingAppButtonLabel: t("book_now"),
@@ -76,7 +78,6 @@ export default function ProjectHome(props: {
         ...(projectId ? extraProjectConfig[projectId] : {}),
       } as WhitelabelContextType;
       setWhitelabel(mergedWhitelabel);
-      // console.log("mergedWhitelabel", mergedWhitelabel);
     }
   }, [project]);
 
@@ -86,14 +87,11 @@ export default function ProjectHome(props: {
         {project && (
           <>
             <Header query={query} label={label} projects={projects} />
-            {(!query || query.length < 3) && (!label || label.length < 2) && (
+            {(!query || query.length < 3) && (
               <ServicesList projectId={projectId} />
             )}
             {query?.length > 2 && (
               <ServicesSearch projectId={projectId} query={query} />
-            )}
-            {label?.length > 1 && (
-              <ServicesLabels projectId={projectId} label={label} />
             )}
           </>
         )}
