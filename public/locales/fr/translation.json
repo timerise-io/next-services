@@ -11,5 +11,6 @@
     "timezone": "Fuseau horaire",
     "locale": "Paramètres régionaux",
     "featured": "En vedette",
-    "category": "Catégorie"
+    "category": "Catégorie",
+    "language": "Langue"
 }

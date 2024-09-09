@@ -50,6 +50,7 @@ export default function OrganizationHome(props: {
 
   useEffect(() => {
     if (organization) {
+      console.log("organization", organization);
       const mergedWhitelabel = {
         ...whitelabel,
         ...pickBy({

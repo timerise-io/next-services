@@ -1,3 +1,5 @@
+"use client";
+
 import { ServiceInterface } from "@/utlis/Types";
 import { CSSProperties, useState } from "react";
 import { useMediaQuery } from "react-responsive";

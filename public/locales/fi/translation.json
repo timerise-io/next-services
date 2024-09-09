@@ -11,5 +11,6 @@
     "timezone": "Aikavyöhyke",
     "locale": "Sijainti",
     "featured": "Suositeltu",
-    "category": "Kategoria"
+    "category": "Kategoria",
+    "language": "Kieli"
 }

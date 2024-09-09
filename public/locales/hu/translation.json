@@ -11,5 +11,6 @@
     "timezone": "Időzóna",
     "locale": "Helyszín",
     "featured": "Kiemelt",
-    "category": "Kategória"
+    "category": "Kategória",
+    "language": "Nyelv"
 }

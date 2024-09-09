@@ -11,5 +11,6 @@
     "timezone": "Fuso horário",
     "locale": "Localização",
     "featured": "Destaque",
-    "category": "Categoria"
+    "category": "Categoria",
+    "language": "Idioma"
 }

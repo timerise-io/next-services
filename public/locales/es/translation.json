@@ -11,5 +11,6 @@
     "timezone": "Zona horaria",
     "locale": "Configuración regional",
     "featured": "Destacados",
-    "category": "Categoría"
+    "category": "Categoría",
+    "language": "Idioma"
 }

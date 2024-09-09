@@ -11,5 +11,6 @@
     "timezone": "Časové pásmo",
     "locale": "Jazyk",
     "featured": "Doporučené",
-    "category": "Kategorie"
+    "category": "Kategorie",
+    "language": "Jazyk"
 }

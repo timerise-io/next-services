@@ -11,5 +11,6 @@
     "timezone": "Zaman Dilimi",
     "locale": "Yerel Ayar",
     "featured": "Öne Çıkanlar",
-    "category": "Kategori"
+    "category": "Kategori",
+    "language": "Dil"
 }

@@ -29,15 +29,15 @@ export const GET = async (
     }
     if (q && l) {
       query = JSON.stringify({
-        query: `{ services(organizationId:"${organizationId}", query:"${l} ${q}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }`,
+        query: `{ services(organizationId:"${organizationId}", query:"${l} ${q}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
       });
     } else if (q && !l) {
       query = JSON.stringify({
-        query: `{ services(organizationId:"${organizationId}", query:"${q}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }`,
+        query: `{ services(organizationId:"${organizationId}", query:"${q}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
       });
     } else if (l && !q) {
       query = JSON.stringify({
-        query: `{ services(organizationId:"${organizationId}", query:"${l}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price shortUrl media { url } draft } }`,
+        query: `{ services(organizationId:"${organizationId}", query:"${l}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
       });
     } else {
       query = JSON.stringify({

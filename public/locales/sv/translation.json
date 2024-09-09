@@ -11,5 +11,6 @@
     "timezone": "Tidszon",
     "locale": "Språk",
     "featured": "Utvalda",
-    "category": "Kategori"
+    "category": "Kategori",
+    "language": "Språk"
 }

@@ -11,5 +11,6 @@
     "timezone": "Timezone",
     "locale": "Locale",
     "featured": "Featured",
-    "category": "Category"
+    "category": "Category",
+    "language": "Language"
 }

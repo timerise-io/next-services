@@ -11,5 +11,6 @@
     "timezone": "Tijdzone",
     "locale": "Taal",
     "featured": "Aanbevolen",
-    "category": "Categorie"
+    "category": "Categorie",
+    "language": "Taal"
 }

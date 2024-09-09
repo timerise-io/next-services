@@ -11,6 +11,7 @@
     "timezone": "Zeitzone",
     "locale": "Gebietsschema",
     "featured": "Empfohlen",
-    "category": "Kategorie"
+    "category": "Kategorie",
+    "language": "Sprache"
   }
   

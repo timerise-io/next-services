@@ -1,4 +1,5 @@
-import { CSSProperties } from "react";
+"use client";
+
 import ServiceBox from "../ServiceBox";
 import Loading from "../Loading";
 import EmptyList from "../EmptyList";

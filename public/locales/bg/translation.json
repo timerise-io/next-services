@@ -11,5 +11,6 @@
     "timezone": "Часова зона",
     "locale": "Локализация",
     "featured": "Препоръчани",
-    "category": "Категория"
+    "category": "Категория",
+    "language": "Език"
 }

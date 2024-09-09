@@ -1,4 +1,4 @@
-import { ChangeEvent, CSSProperties, useCallback, useState } from "react";
+import { ChangeEvent, useCallback } from "react";
 import { useWhitelabel } from "@/context/Whitelabel";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -6,7 +6,6 @@ import { Select } from "@headlessui/react";
 
 function LabelsBox(props: { label: string }) {
   const router = useRouter();
-  // const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const { label } = props;

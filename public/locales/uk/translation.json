@@ -11,5 +11,6 @@
     "timezone": "Часовий пояс",
     "locale": "Місцевий",
     "featured": "Рекомендовані",
-    "category": "Категорія"
+    "category": "Категорія",
+    "language": "Мова"
 }

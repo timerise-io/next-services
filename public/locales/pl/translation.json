@@ -11,5 +11,6 @@
     "timezone": "Strefa czasowa",
     "locale": "Język i region",
     "featured": "Polecane",
-    "category": "Kategoria"
+    "category": "Kategoria",
+    "language": "Język"
 }
