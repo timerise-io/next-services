@@ -31,7 +31,7 @@ export const GET = async (
       });
     } else if (l && !q) {
       query = JSON.stringify({
-        query: `{ services(projectId:"${projectId}", query:"${l}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
+        query: `{ services(projectId:"${projectId}", label:"${l}", draft:false) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
       });
     } else {
       query = JSON.stringify({
