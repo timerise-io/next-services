@@ -10,7 +10,6 @@ A marketplace of services available for booking, built with Next.js and the [Tim
 - [Installation](#installation)
 - [Running the Application](#running-the-application)
 - [Scripts](#scripts)
-- [Configuration](#configuration)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
