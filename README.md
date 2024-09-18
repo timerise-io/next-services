@@ -60,9 +60,7 @@ A marketplace of services available for booking, built with Next.js and the [Tim
   npm install
   ```
 
-3. **Running the Application**
-
-  Development Mode
+3. **Development Mode**
   Run the application in development mode with hot-reloading:
 
   ```bash
