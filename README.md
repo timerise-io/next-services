@@ -53,11 +53,13 @@ A marketplace of services available for booking, built with Next.js and the [Tim
   ```bash
   git clone https://github.com/your-username/next-services.git
   cd next-services
+  ```
 
 2. **Install dependencies**:
 
   ```bash
   npm install
+  ```
 
 3. **Running the Application**
 
@@ -66,6 +68,7 @@ A marketplace of services available for booking, built with Next.js and the [Tim
 
   ```bash
   npm run dev
+  ```
 
   The application will be available at http://localhost:3000.
 
@@ -76,6 +79,7 @@ A marketplace of services available for booking, built with Next.js and the [Tim
   npm run build - Builds the application for production.
   npm start - Starts the production server.
   npm run lint - Runs ESLint to check code quality.
+  ```
 
 5. **Contributing**
   Contributions are welcome! Please open an issue or submit a pull request.
