@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next Services Marketplace
 
-## Getting Started
+A marketplace of services available for booking, built with Next.js and the [Timerise.io](https://timerise.io/) API. The application allows users to browse and book various services in a simple and intuitive way.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Features](#features)
+- [Technologies](#technologies)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Scripts](#scripts)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Browse Services**: Intuitive interface for exploring available services.
+- **Bookings**: Seamless booking experience through integration with the Timerise.io API.
+- **Responsiveness**: Optimized display on various devices with responsive design.
+- **Internationalization**: Multi-language support using i18next.
+- **Performance**: Efficient rendering with Next.js and data prefetching using SWR.
+- **Security**: Data validation with Zod and strong typing with TypeScript.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technologies
 
-## Learn More
+- **Framework**: [Next.js](https://nextjs.org/) 14.2.5
+- **Language**: [TypeScript](https://www.typescriptlang.org/) ^5
+- **UI Libraries**:
+  - [React](https://reactjs.org/) ^18
+  - [Tailwind CSS](https://tailwindcss.com/) ^3.4.1
+  - [Headless UI](https://headlessui.com/) ^2.1.3
+- **Internationalization**:
+  - [i18next](https://www.i18next.com/) ^23.12.2
+  - [react-i18next](https://react.i18next.com/) ^15.0.0
+- **Data Fetching**: [SWR](https://swr.vercel.app/) ^2.2.5
+- **Schema Validation**: [Zod](https://github.com/colinhacks/zod) ^3.23.8
+- **Others**:
+  - [Lodash](https://lodash.com/) ^4.17.21
+  - [React Markdown](https://remarkjs.github.io/react-markdown/) ^9.0.1
 
-To learn more about Next.js, take a look at the following resources:
+## Requirements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Node.js**: Version 14 or higher
+- **npm**: Version 6 or higher
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Installation
 
-## Deploy on Vercel
+1. **Clone the repository**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  ```bash
+  git clone https://github.com/your-username/next-services.git
+  cd next-services
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. **Install dependencies**:
+
+  ```bash
+  npm install
+
+3. **Running the Application**
+
+  Development Mode
+  Run the application in development mode with hot-reloading:
+
+  ```bash
+  npm run dev
+
+  The application will be available at http://localhost:3000.
+
+4. **Scripts**
+
+  ```bash
+  npm run dev - Starts the development server.
+  npm run build - Builds the application for production.
+  npm start - Starts the production server.
+  npm run lint - Runs ESLint to check code quality.
+
+5. **Contributing**
+  Contributions are welcome! Please open an issue or submit a pull request.
+
+6. **License**
+  This project is licensed under the terms of the MIT license.
