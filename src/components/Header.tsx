@@ -7,6 +7,7 @@ import SearchBox from "./SearchBox";
 import { mediaQueries } from "@/utlis/MediaQueries";
 import { useWhitelabel } from "@/context/Whitelabel";
 import ProjectsBox from "./ProjectsBox";
+import { CSSProperties } from "react";
 
 function Header(props: {
   query: string;
@@ -17,6 +18,10 @@ function Header(props: {
   const isMobile = useMediaQuery({ query: mediaQueries.isMobile });
   const { projectId, searchBox, labelsBox, projectsBox, labels } =
     useWhitelabel();
+
+    const componentStyle: CSSProperties = {
+      marginLeft: 'auto',
+    };
 
   return (
     <div
@@ -32,6 +37,7 @@ function Header(props: {
           "flex justify-between text-left gap-[10px]",
           isMobile ? "flex-col w-full" : "flex-row w-auto"
         )}
+        style={componentStyle}
       >
         {labelsBox && labels && labels.length > 0 && (
           <LabelsBox label={label} />

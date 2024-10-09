@@ -14,7 +14,7 @@ function ServicesSearch(props: {
   const { services, isLoadingServices } = useProjectServicesQuery(projectId, query);
 
   return (
-    <div className="flex justify-start items-start flex-row flex-wrap">
+    <div className="flex justify-start flex-row flex-wrap">
       {isLoadingServices && <Loading />}
       {services && services.length === 0 && <EmptyList />}
       {services &&
