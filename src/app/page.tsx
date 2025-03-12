@@ -5,6 +5,7 @@ import OrganizationHome from "@/components/Organization/Home";
 import { Env } from "@/utlis/Env";
 import { getOrganizationId } from "@/utlis/Whitelabel";
 import ClientOnly from "@/components/ClientOnly";
+import { redirect } from "next/navigation";
 
 type Props = {
   searchParams: { query?: string; label?: string };
@@ -43,6 +44,9 @@ export default function Home({ searchParams }: Props) {
   const { query, label } = searchParams;
   const domain = headers().get("host") || "localhost:3000";
   const organizationId = getOrganizationId(domain);
+  if (!organizationId) {
+    return redirect("https://timerise.io");
+  }
   return (
     <main
       className="flex min-h-screen flex-col items-between justify-between"

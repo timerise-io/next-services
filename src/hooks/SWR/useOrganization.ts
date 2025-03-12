@@ -2,11 +2,15 @@ import { fetchOrganization } from '@/models/organizations';
 import useSWR, { mutate } from 'swr';
 
 
-export function useOrganization(organizationId: string) {
-  const { data, error } = useSWR([`organization-${organizationId}`], () => fetchOrganization(organizationId));
+export function useOrganization(organizationId: string | undefined) {
+  const { data, error } = useSWR(
+    organizationId ? [`organization-${organizationId}`] : null,
+    () => organizationId ? fetchOrganization(organizationId) : null
+  );
+  
   return {
     organization: data,
-    isLoadingOrganization: !error && !data,
+    isLoadingOrganization: organizationId ? (!error && !data) : false,
     isError: error,
   };
 }

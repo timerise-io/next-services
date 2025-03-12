@@ -3,10 +3,14 @@ import useSWR, { mutate } from 'swr';
 import { fetchProjectsByOrganization } from '@/models/organizations';
 
 export function useOrganizationProjects(organizationId: string | undefined) {
-  const { data, error } = useSWR([`projects-${organizationId}`], () => fetchProjectsByOrganization(organizationId));
+  const { data, error } = useSWR(
+    organizationId ? [`projects-${organizationId}`] : null,
+    () => organizationId ? fetchProjectsByOrganization(organizationId) : null
+  );
+  
   return {
-    projects: data,
-    isLoadingProjects: !error && !data,
+    projects: data || [],
+    isLoadingProjects: organizationId ? (!error && !data) : false,
     isError: error,
   };
 }

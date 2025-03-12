@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import {
@@ -13,10 +12,9 @@ import { useOrganizationProjects } from "@/hooks/SWR/useOrganizationProjects";
 import { useProject } from "@/hooks/SWR/useProject";
 import { I18nextProvider, useTranslation } from "react-i18next";
 import i18n, { prepareLocale } from "@/utlis/i18n";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { WhitelabelContextType } from "@/utlis/Types";
 import { pickBy } from "lodash";
-import { DEFAULT_ORG_ID } from "@/utlis/Whitelabel";
 import { useOrganization } from "@/hooks/SWR/useOrganization";
 export default function ProjectHome(props: {
   organizationId: string | undefined;
@@ -32,11 +30,11 @@ export default function ProjectHome(props: {
 
   const { t } = useTranslation();
 
-  const { organization } = useOrganization(organizationId as string);
+  const { organization } = useOrganization(organizationId);
   const { project } = useProject(projectId);
   const { projects } = useOrganizationProjects(organizationId);
 
-  const extraOrganizationConfig: { [organizationId: string]: any } = {
+  const extraOrganizationConfig = useMemo<{ [key: string]: any }>(() => ({
     // services.bloomyhealth.pl
     XFV6dCD8YZM3IeOiOz3z: {
       bookingAppUrl: "https://booking.bloomyhealth.pl",
@@ -52,9 +50,9 @@ export default function ProjectHome(props: {
       secondaryColor: "#d1008a",
       organizationId: "XFV6dCD8YZM3IeOiOz3z",
     },
-  };
+  }), [t]);
 
-  const extraProjectConfig: { [organizationId: string]: any } = {};
+  const extraProjectConfig = useMemo<{ [key: string]: any }>(() => ({}), []);
 
   useEffect(() => {
     if (project) {
@@ -74,12 +72,23 @@ export default function ProjectHome(props: {
         labelsBoxLabel: t("label"),
         bookingAppButtonLabel: t("book_now"),
         ...(organizationId ? extraOrganizationConfig[organizationId] : {}),
-        organizationId: organizationId !== DEFAULT_ORG_ID ? organizationId : null,
+        organizationId: organizationId || undefined,
         ...(projectId ? extraProjectConfig[projectId] : {}),
       } as WhitelabelContextType;
       setWhitelabel(mergedWhitelabel);
     }
-  }, [project]);
+  }, [
+    project, 
+    extraOrganizationConfig, 
+    extraProjectConfig, 
+    organization?.iconUrl, 
+    organization?.labels, 
+    organization?.logoUrl, 
+    organizationId, 
+    projectId, 
+    t, 
+    whitelabel
+  ]);
 
   return (
     <I18nextProvider i18n={i18n}>
