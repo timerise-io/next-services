@@ -57,7 +57,7 @@ export default function ProjectHome(props: {
   useEffect(() => {
     if (project) {
       const mergedWhitelabel = {
-        ...whitelabel,
+        ...defaultWhitelabelContextValue,
         ...pickBy({
           projectId,
           title: project.title,
@@ -86,8 +86,7 @@ export default function ProjectHome(props: {
     organization?.logoUrl, 
     organizationId, 
     projectId, 
-    t, 
-    whitelabel
+    t
   ]);
 
   return (
