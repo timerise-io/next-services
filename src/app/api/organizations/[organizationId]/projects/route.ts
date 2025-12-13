@@ -7,12 +7,13 @@ import { NextResponse } from 'next/server';
 export const GET = async (
   _: Request,
   {
-    params: { organizationId },
+    params,
   }: {
-    params: { organizationId: string };
+    params: Promise<{ organizationId: string }>;
   },
 ) => {
   try {
+    const { organizationId } = await params;
     const query = JSON.stringify({ query:`{ projects(organizationId:"${organizationId}") { organizationId projectId title labels } }` });
     const response = await fetch(Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT, {
       method: 'POST',

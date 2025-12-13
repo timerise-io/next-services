@@ -7,12 +7,13 @@ import { NextResponse } from "next/server";
 export const GET = async (
   _: Request,
   {
-    params: { projectId },
+    params,
   }: {
-    params: { projectId: string };
+    params: Promise<{ projectId: string }>;
   }
 ) => {
   try {
+    const { projectId } = await params;
     const query = JSON.stringify({
       query: `{ project(projectId:"${projectId}") { projectId defaultLocale localTimeZone title logoUrl labels } }`,
     });

@@ -8,11 +8,11 @@ import ClientOnly from "@/components/ClientOnly";
 import { redirect } from "next/navigation";
 
 type Props = {
-  searchParams: { query?: string; label?: string };
+  searchParams: Promise<{ query?: string; label?: string }>;
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const domain = headers().get("host") || "localhost:3000";
+  const domain = (await headers()).get("host") || "localhost:3000";
   const organizationId = getOrganizationId(domain);
   const query = JSON.stringify({
     query: `{ organization(organizationId:"${organizationId}") { title iconUrl logoUrl og { title description image locale } } }`,
@@ -40,9 +40,10 @@ const componentStyle: CSSProperties = {
   margin: "auto",
 };
 
-export default function Home({ searchParams }: Props) {
-  const { query, label } = searchParams;
-  const domain = headers().get("host") || "localhost:3000";
+export default async function Home({ searchParams }: Props) {
+  const search = await searchParams;
+  const { query, label } = search;
+  const domain = (await headers()).get("host") || "localhost:3000";
   const organizationId = getOrganizationId(domain);
   if (!organizationId) {
     return redirect("https://timerise.io");

@@ -7,15 +7,16 @@ import { NextResponse } from "next/server";
 export const GET = async (
   request: Request,
   {
-    params: { projectId },
+    params,
   }: {
-    params: { projectId: string };
+    params: Promise<{ projectId: string }>;
   }
 ) => {
   try {
-    const params = new URLSearchParams(new URL(request.url).search);
-    const q = params.get("query") || undefined;
-    const l = params.get("label") || undefined;
+    const { projectId } = await params;
+    const searchParams = new URLSearchParams(new URL(request.url).search);
+    const q = searchParams.get("query") || undefined;
+    const l = searchParams.get("label") || undefined;
     let query: string;
     if (q && l) {
       return handleZodError("Cannot use both query and label parameters");

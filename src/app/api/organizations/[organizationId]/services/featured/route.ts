@@ -7,12 +7,13 @@ import { NextResponse } from "next/server";
 export const GET = async (
   _: Request,
   {
-    params: { organizationId },
+    params,
   }: {
-    params: { organizationId: string };
+    params: Promise<{ organizationId: string }>;
   }
 ) => {
   try {
+    const { organizationId } = await params;
     let query: string = JSON.stringify({
       query: `{ services(organizationId:"${organizationId}", featured:true, limit:72) { project { title } locations { title address } serviceId featured title shortDescription durationInfo price currency shortUrl media { url } draft } }`,
     });

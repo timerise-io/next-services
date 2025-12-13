@@ -7,15 +7,16 @@ import { NextResponse } from "next/server";
 export const GET = async (
   request: Request,
   {
-    params: { organizationId },
+    params,
   }: {
-    params: { organizationId: string };
+    params: Promise<{ organizationId: string }>;
   }
 ) => {
   try {
-    const params = new URLSearchParams(new URL(request.url).search);
-    const q = params.get("query") || undefined;
-    const l = params.get("label") || undefined;
+    const { organizationId } = await params;
+    const searchParams = new URLSearchParams(new URL(request.url).search);
+    const q = searchParams.get("query") || undefined;
+    const l = searchParams.get("label") || undefined;
     let query: string;
     if (q && q.length < 3) {
       return handleZodError(

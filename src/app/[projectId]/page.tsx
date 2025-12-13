@@ -17,15 +17,16 @@ const componentStyle: CSSProperties = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     projectId: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { projectId } = await params;
   const query = JSON.stringify({
-    query: `{ project(projectId:"${params.projectId}") { projectId title iconUrl logoUrl } }`,
+    query: `{ project(projectId:"${projectId}") { projectId title iconUrl logoUrl } }`,
   });
   const response = await fetch(Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT, {
     method: "POST",
@@ -45,10 +46,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function Project({ params, searchParams }: Props) {
-  const { projectId } = params;
-  const { query, label } = searchParams;
-  const domain = headers().get("host") || "localhost:3000";
+export default async function Project({ params, searchParams }: Props) {
+  const { projectId } = await params;
+  const search = await searchParams;
+  const { query, label } = search;
+  const domain = (await headers()).get("host") || "localhost:3000";
   const organizationId = getOrganizationId(domain);
 
   return (
