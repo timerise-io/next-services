@@ -32,21 +32,7 @@ export default function OrganizationHome(props: {
   const { organization } = useOrganization(organizationId);
   const { projects } = useOrganizationProjects(organizationId);
 
-  const extraOrganizationConfig: { [organizationId: string]: any } = {
-    // services.bloomyhealth.pl
-    XFV6dCD8YZM3IeOiOz3z: {
-      bookingAppUrl: "https://booking.bloomyhealth.pl",
-      termsUrl: "https://bloomyhealth.pl/terms",
-      privacyUrl: "https://bloomyhealth.pl/privacy",
-      logoHref: "https://bloomyhealth.pl",
-      labelsBox: true,
-      labelsBoxLabel: t("category"),
-      projectsBoxLabel: t("clinic"),
-      featuredLabel: true,
-      primaryColor: "#4255c5",
-      secondaryColor: "#d1008a",
-    },
-  };
+  const extraOrganizationConfig: { [organizationId: string]: any } = {};
 
   useEffect(() => {
     if (organization) {
