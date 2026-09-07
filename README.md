@@ -19,7 +19,7 @@ A marketplace of services available for booking, built with Next.js and the [Tim
 - **Browse Services**: Intuitive interface for exploring available services across organizations and projects.
 - **Whitelabel Support**: Domain-based organization marketplace configuration for custom branding.
 - **Service Discovery**: Featured services, label filtering, and search functionality.
-- **Bookings**: Seamless booking experience through integration with the Timerise.io API.
+- **Bookings**: Each service card links through to the Timerise booking app (`bookingAppUrl`) to complete a reservation.
 - **Responsiveness**: Optimized display on various devices with responsive design using Tailwind CSS.
 - **Internationalization**: Multi-language support with 18 languages (bg, cs, de, el, en, es, fi, fr, hu, it, nb, nl, pl, pt, sk, sv, tr, uk) using i18next.
 - **Performance**: Efficient data fetching and caching with SWR.
@@ -50,7 +50,7 @@ A marketplace of services available for booking, built with Next.js and the [Tim
 ## Requirements
 
 - **Node.js**: Version 24 (see `.nvmrc`)
-- **npm**: Version 9 or higher
+- **Bun**: Version 1.2 or higher (package manager and script runner)
 
 ## Installation
 
@@ -64,29 +64,38 @@ A marketplace of services available for booking, built with Next.js and the [Tim
 2. **Install dependencies**:
 
   ```bash
-  npm install
+  bun install
   ```
 
-3. **Development Mode**
+3. **Configure environment variables**:
+  The tracked `.env` file ships placeholders only. Create `.env.local` and set the
+  GraphQL endpoint, otherwise the app starts but every API request fails:
+
+  ```bash
+  NEXT_PUBLIC_TIMERISE_API_ENDPOINT=https://api.timerise.io/graphql  # required
+  TIMERISE_API_KEY=your_api_key_here                                 # optional, server-side
+  ```
+
+4. **Development Mode**
   Run the application in development mode with hot-reloading:
 
   ```bash
-  npm run dev
+  bun dev
   ```
 
   The application will be available at http://localhost:3000.
 
-4. **Scripts**
+5. **Scripts**
 
   ```bash
-  npm run dev - Starts the development server.
-  npm run build - Builds the application for production.
-  npm start - Starts the production server.
-  npm run lint - Runs ESLint to check code quality.
+  bun dev - Starts the development server.
+  bun run build - Builds the application for production.
+  bun start - Starts the production server.
+  bun run lint - Runs ESLint to check code quality.
   ```
 
-5. **Contributing**
+6. **Contributing**
   Contributions are welcome! Please open an issue or submit a pull request.
 
-6. **License**
+7. **License**
   This project is licensed under the terms of the MIT license.

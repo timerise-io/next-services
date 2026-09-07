@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A Next.js 16 marketplace application for browsing and booking services via the Timerise.io API. The app supports whitelabel configurations where different domains can display organization-specific marketplaces.
+A Next.js 16 marketplace application for browsing services via the Timerise.io API. Booking is handed off to the external Timerise booking app (`bookingAppUrl` + `/service/<serviceId>`); no booking happens in this app. The app supports whitelabel configurations where different domains can display organization-specific marketplaces.
 
 **Tech Stack**:
 - Node.js 24 (see `.nvmrc`)
@@ -41,17 +41,19 @@ src/
 
 ```bash
 # Development
-npm run dev          # Start dev server at http://localhost:3000
+bun dev              # Start dev server at http://localhost:3000
 
 # Build & Deploy
-npm run build        # Build for production
-npm start           # Start production server
+bun run build        # Build for production
+bun start           # Start production server
 
 # Code Quality
-npm run lint        # Run ESLint (flat config in eslint.config.mjs)
+bun run lint        # Run ESLint (flat config in eslint.config.mjs)
 ```
 
 Node.js 24 is required (`engines.node: "24.x"`). Run `nvm use` to pick it up from `.nvmrc`.
+
+**Bun is the package manager** (`packageManager: "bun@1.2.23"`, lockfile `bun.lock`). Use `bun install` / `bun add` / `bun remove` — do not use npm, or a stray `package-lock.json` will desync the lockfile. `unrs-resolver` is listed in `trustedDependencies` because its postinstall selects the native binary ESLint needs.
 
 ## Environment Setup
 
