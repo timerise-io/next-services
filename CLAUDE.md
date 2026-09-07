@@ -7,14 +7,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A Next.js 16 marketplace application for browsing and booking services via the Timerise.io API. The app supports whitelabel configurations where different domains can display organization-specific marketplaces.
 
 **Tech Stack**:
-- Next.js 16.0.10 (React 19, TypeScript 5)
-- Tailwind CSS 4.1.18 with PostCSS 8
-- Headless UI 2.2.9
-- i18next 25.7.2 + react-i18next 16.5.0
-- SWR 2.3.7 (data fetching)
-- Zod 4.1.13 (schema validation)
-- @t3-oss/env-nextjs 0.13.8 (environment variables)
-- Lodash 4.17.21, React Markdown 10.1.0, React Responsive 10.0.1
+- Node.js 24 (see `.nvmrc`)
+- Next.js 16.3.4 (React 19.2, TypeScript 6.0)
+- Tailwind CSS 4.3.3 with PostCSS 8
+- Headless UI 2.2.10
+- i18next 26.4.2 + react-i18next 17.0.13
+- SWR 2.5.1 (data fetching)
+- Zod 4.5.4 (schema validation)
+- @t3-oss/env-nextjs 0.13.11 (environment variables)
+- Lodash 4.18.1, React Markdown 10.1.0, React Responsive 10.0.1
 
 ## Project Structure
 
@@ -46,8 +47,10 @@ npm run build        # Build for production
 npm start           # Start production server
 
 # Code Quality
-npm run lint        # Run ESLint
+npm run lint        # Run ESLint (flat config in eslint.config.mjs)
 ```
+
+Node.js 24 is required (`engines.node: "24.x"`). Run `nvm use` to pick it up from `.nvmrc`.
 
 ## Environment Setup
 
@@ -117,9 +120,9 @@ The root page redirects to timerise.io if no organization ID is found for the do
 
 ### Internationalization
 
-- **Framework**: i18next v25.7.2 with react-i18next v16.5.0
-- **Backend**: i18next-http-backend v3.0.2 for loading translations
-- **Language Detection**: i18next-browser-languagedetector v8.2.0
+- **Framework**: i18next v26.4.2 with react-i18next v17.0.13
+- **Backend**: i18next-http-backend v4.0.2 for loading translations
+- **Language Detection**: i18next-browser-languagedetector v8.2.1
 - **Translation Files**: `public/locales/[lang]/translation.json`
 - **Supported Languages** (18 total): bg, cs, de, el, en, es, fi, fr, hu, it, nb, nl, pl, pt, sk, sv, tr, uk
 - **Configuration File**: `src/utlis/i18n.ts`
@@ -129,9 +132,9 @@ The root page redirects to timerise.io if no organization ID is found for the do
 
 ### Styling
 
-- **Tailwind CSS v4.1.18**: Utility-first styling framework
-- **PostCSS v8**: CSS processing with @tailwindcss/postcss v4.1.18
-- **Headless UI v2.2.9**: Unstyled, accessible UI components
+- **Tailwind CSS v4.3.3**: Utility-first styling framework
+- **PostCSS v8**: CSS processing with @tailwindcss/postcss v4.3.3
+- **Headless UI v2.2.10**: Unstyled, accessible UI components
 - **React Responsive v10.0.1**: Responsive design utilities
 - **Custom Theme**: Colors from whitelabel context (`primaryColor`, `secondaryColor`)
 
@@ -172,3 +175,13 @@ const query = JSON.stringify({
 ```
 
 Use `Env.NEXT_PUBLIC_TIMERISE_API_ENDPOINT` for the endpoint.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

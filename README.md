@@ -27,28 +27,28 @@ A marketplace of services available for booking, built with Next.js and the [Tim
 
 ## Technologies
 
-- **Framework**: [Next.js](https://nextjs.org/) 16.0.10
-- **Language**: [TypeScript](https://www.typescriptlang.org/) ^5
+- **Framework**: [Next.js](https://nextjs.org/) 16.3.4
+- **Language**: [TypeScript](https://www.typescriptlang.org/) ^6.0.3
 - **UI Libraries**:
-  - [React](https://reactjs.org/) ^19
-  - [Tailwind CSS](https://tailwindcss.com/) ^4.1.18
-  - [Headless UI](https://headlessui.com/) ^2.2.9
+  - [React](https://reactjs.org/) ^19.2.8
+  - [Tailwind CSS](https://tailwindcss.com/) ^4.3.3
+  - [Headless UI](https://headlessui.com/) ^2.2.10
 - **Internationalization**:
-  - [i18next](https://www.i18next.com/) ^25.7.2
-  - [react-i18next](https://react.i18next.com/) ^16.5.0
-  - [i18next-browser-languagedetector](https://github.com/i18next/i18next-browser-languageDetector) ^8.2.0
-  - [i18next-http-backend](https://github.com/i18next/i18next-http-backend) ^3.0.2
-- **Data Fetching**: [SWR](https://swr.vercel.app/) ^2.3.7
-- **Schema Validation**: [Zod](https://github.com/colinhacks/zod) ^4.1.13
-- **Environment Variables**: [@t3-oss/env-nextjs](https://env.t3.gg/) ^0.13.8
+  - [i18next](https://www.i18next.com/) ^26.4.2
+  - [react-i18next](https://react.i18next.com/) ^17.0.13
+  - [i18next-browser-languagedetector](https://github.com/i18next/i18next-browser-languageDetector) ^8.2.1
+  - [i18next-http-backend](https://github.com/i18next/i18next-http-backend) ^4.0.2
+- **Data Fetching**: [SWR](https://swr.vercel.app/) ^2.5.1
+- **Schema Validation**: [Zod](https://github.com/colinhacks/zod) ^4.5.4
+- **Environment Variables**: [@t3-oss/env-nextjs](https://env.t3.gg/) ^0.13.11
 - **Others**:
-  - [Lodash](https://lodash.com/) ^4.17.21
+  - [Lodash](https://lodash.com/) ^4.18.1
   - [React Markdown](https://remarkjs.github.io/react-markdown/) ^10.1.0
   - [React Responsive](https://github.com/yocontra/react-responsive) ^10.0.1
 
 ## Requirements
 
-- **Node.js**: Version 18 or higher
+- **Node.js**: Version 24 (see `.nvmrc`)
 - **npm**: Version 9 or higher
 
 ## Installation
