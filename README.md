@@ -45,6 +45,7 @@ A marketplace of services available for booking, built with Next.js and the [Tim
   - [Lodash](https://lodash.com/) ^4.18.1
   - [React Markdown](https://remarkjs.github.io/react-markdown/) ^10.1.0
   - [React Responsive](https://github.com/yocontra/react-responsive) ^10.0.1
+- **Analytics**: [@vercel/analytics](https://vercel.com/docs/analytics) ^2.0.1
 
 ## Requirements
 

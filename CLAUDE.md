@@ -15,6 +15,7 @@ A Next.js 16 marketplace application for browsing and booking services via the T
 - SWR 2.5.1 (data fetching)
 - Zod 4.5.4 (schema validation)
 - @t3-oss/env-nextjs 0.13.11 (environment variables)
+- @vercel/analytics 2.0.1 (Vercel Web Analytics)
 - Lodash 4.18.1, React Markdown 10.1.0, React Responsive 10.0.1
 
 ## Project Structure
@@ -75,8 +76,7 @@ Create `.env.local` for sensitive values. The `.env` file contains templates and
 The app uses domain-based whitelabel configuration:
 
 - **Domain Mapping**: `src/utlis/Whitelabel.ts` maps domains to organization IDs
-  - Current configuration: `bookings.bloomyhealth.pl` → `XFV6dCD8YZM3IeOiOz3z`
-  - Localhost mapping commented out for development
+  - Current configuration: `localhost:3000` → `XFV6dCD8YZM3IeOiOz3z` (local development only; no production domain mapped)
 - **Context**: `src/context/Whitelabel.ts` provides theme/branding via React Context
 - **Detection**: On page load, the domain determines which organization's services to display
 
